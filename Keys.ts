@@ -22,6 +22,7 @@ function getNewValue() {
 
 var timer : number;
 var currentValue : string;
+var currentTarget : string;
 
 function setNewValue(value: string) {
     var faderSpeed = 400;
@@ -57,10 +58,14 @@ function changeLoop(x : number) {
 }
 
 function hit() {
-    changeLoop(5);
+    if (currentTarget === currentValue) {
+        changeLoop(5);
+    }
 }
 
 function start() {
+    currentTarget = getNewValue();
     changeLoop(20);
+    $("#target").text(currentTarget);
     $("#start").prop("disabled", true);
 }

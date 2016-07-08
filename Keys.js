@@ -17,6 +17,7 @@ function getNewValue() {
 //Functions above this line do not change state!
 var timer;
 var currentValue;
+var currentTarget;
 function setNewValue(value) {
     var faderSpeed = 400;
     var changer = $("#changer");
@@ -44,10 +45,14 @@ function changeLoop(x) {
     }
 }
 function hit() {
-    changeLoop(5);
+    if (currentTarget === currentValue) {
+        changeLoop(5);
+    }
 }
 function start() {
+    currentTarget = getNewValue();
     changeLoop(20);
+    $("#target").text(currentTarget);
     $("#start").prop("disabled", true);
 }
 //# sourceMappingURL=Keys.js.map
