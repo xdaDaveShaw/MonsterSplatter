@@ -6,7 +6,7 @@ function randomIntFromInterval(min : number, max : number)
 }
 
 function getNewValue() {
-    var randomChar = randomIntFromInterval(65, 68);
+    var randomChar = randomIntFromInterval(65, 66);
     //return String.fromCharCode(randomChar);
     //Temp to ensure non-sequential values
     var newV = String.fromCharCode(randomChar);
@@ -18,12 +18,30 @@ function getNewValue() {
     }
 }
 
+function enableButton(selector: string) {
+    $(selector).removeAttr("disabled");    
+}
+
+function disableButton(selector: string) {
+    $(selector).prop("disabled", true);    
+}
+
 //Functions above this line do not change state!
 
 var timer : number;
 var currentValue : string;
 var currentTarget : string;
+var currentScore : number = 0;
 const secondsInAGame = 15; 
+
+function setScore(score: number) {
+    currentScore = score;
+    $("#score").text(score);
+}
+
+function incrementScore() {
+    setScore(currentScore + 5);
+}
 
 function setNewValue(value: string) {
     const faderSpeed = 400;
@@ -39,11 +57,12 @@ function setNewValue(value: string) {
 }
 
 function changeLoop() {
-    const timeValueShown = 5000;
+    const timeValueShown = 2500;
     
+    var newValue = getNewValue();
+
     clearInterval(timer);
 
-    var newValue = getNewValue();
     setNewValue(newValue);
 
     timer = setInterval(function() {
@@ -53,19 +72,28 @@ function changeLoop() {
 
 function hit() {
     if (currentTarget === currentValue) {
+        incrementScore();
         changeLoop();
     }
 }
 
+function stopGame() {
+    clearInterval(timer);
+    enableButton("#start");
+    disableButton("#hit");
+}
+
 function start() {
+    disableButton("#start");
+    setScore(0);
+
     currentTarget = getNewValue();
+    $("#target").text(currentTarget);
+    
     changeLoop();
+    enableButton("#hit");
     
     setTimeout(function() {
-        clearInterval(timer);
-        $("#start").removeAttr("disabled");
-    }, secondsInAGame * 1000);
-
-    $("#target").text(currentTarget);
-    $("#start").prop("disabled", true);
+        stopGame();
+    }, secondsInAGame * 1000);    
 }
