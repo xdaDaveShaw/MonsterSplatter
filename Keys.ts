@@ -23,9 +23,10 @@ function getNewValue() {
 var timer : number;
 var currentValue : string;
 var currentTarget : string;
+const secondsInAGame = 60; 
 
 function setNewValue(value: string) {
-    var faderSpeed = 400;
+    const faderSpeed = 400;
 
     var changer = $("#changer");
     changer.fadeOut(faderSpeed, function () {
@@ -42,7 +43,8 @@ function changeLoop(x : number) {
         return;
     }
 
-    clearTimeout(timer);
+    const timeValueShown = 5000;
+    clearInterval(timer);
 
     var y = x;
 
@@ -50,9 +52,9 @@ function changeLoop(x : number) {
         var newValue = getNewValue();
         setNewValue(newValue);
 
-        timer = setTimeout(function() {
+        timer = setInterval(function() {
            changeLoop(y); 
-        }, 5000);
+        }, timeValueShown);
         y--;    
     }
 }

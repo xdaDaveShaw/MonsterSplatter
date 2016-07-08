@@ -18,6 +18,7 @@ function getNewValue() {
 var timer;
 var currentValue;
 var currentTarget;
+var secondsInAGame = 60;
 function setNewValue(value) {
     var faderSpeed = 400;
     var changer = $("#changer");
@@ -33,14 +34,15 @@ function changeLoop(x) {
     if (x === 0) {
         return;
     }
-    clearTimeout(timer);
+    var timeValueShown = 5000;
+    clearInterval(timer);
     var y = x;
     if (y > 0) {
         var newValue = getNewValue();
         setNewValue(newValue);
-        timer = setTimeout(function () {
+        timer = setInterval(function () {
             changeLoop(y);
-        }, 5000);
+        }, timeValueShown);
         y--;
     }
 }
