@@ -48,5 +48,6 @@ function hit() {
 }
 function start() {
     changeLoop(20);
+    $("#start").prop("disabled", true);
 }
 //# sourceMappingURL=Keys.js.map
