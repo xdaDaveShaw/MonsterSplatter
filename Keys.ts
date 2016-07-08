@@ -8,6 +8,7 @@ function randomIntFromInterval(min : number, max : number)
 function getNewValue() {
     var randomChar = randomIntFromInterval(65, 68);
     //return String.fromCharCode(randomChar);
+    //Temp to ensure non-sequential values
     var newV = String.fromCharCode(randomChar);
     if (currentValue === newV) {
         return getNewValue();
@@ -56,7 +57,7 @@ function changeLoop(x : number) {
 }
 
 function hit() {
-    clearTimeout(timer);
+    changeLoop(5);
 }
 
 function start() {
