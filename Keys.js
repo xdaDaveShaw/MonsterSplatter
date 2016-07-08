@@ -4,8 +4,8 @@ function randomIntFromInterval(min, max) {
 }
 function getNewValue() {
     var randomChar = randomIntFromInterval(65, 66);
-    //return String.fromCharCode(randomChar);
-    //Temp to ensure non-sequential values
+    // return String.fromCharCode(randomChar);
+    // Temp to ensure non-sequential values
     var newV = String.fromCharCode(randomChar);
     if (currentValue === newV) {
         return getNewValue();
@@ -20,7 +20,7 @@ function enableButton(selector) {
 function disableButton(selector) {
     $(selector).prop("disabled", true);
 }
-//Functions above this line do not change state!
+// Functions above this line do not change state!
 var timer;
 var currentValue;
 var currentTarget;
@@ -40,7 +40,7 @@ function setNewValue(value) {
         currentValue = value;
         changer.text(value);
         changer.fadeIn(faderSpeed, function () {
-            //Nothing ATM
+            // Nothing ATM
         });
     });
 }

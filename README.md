@@ -19,8 +19,7 @@ VSCode (with extensions):
   - TSLint
 
 Node (and packages):
-  - `npm install -g typescript`
-  - `npm install -g tslint`
+  - `npm install -g tslint typescript`
   - `npm install -g live-server`
 
 # Debugging in Code
