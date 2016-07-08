@@ -18,7 +18,7 @@ function getNewValue() {
 var timer;
 var currentValue;
 var currentTarget;
-var secondsInAGame = 60;
+var secondsInAGame = 15;
 function setNewValue(value) {
     var faderSpeed = 400;
     var changer = $("#changer");
@@ -30,30 +30,27 @@ function setNewValue(value) {
         });
     });
 }
-function changeLoop(x) {
-    if (x === 0) {
-        return;
-    }
+function changeLoop() {
     var timeValueShown = 5000;
     clearInterval(timer);
-    var y = x;
-    if (y > 0) {
-        var newValue = getNewValue();
-        setNewValue(newValue);
-        timer = setInterval(function () {
-            changeLoop(y);
-        }, timeValueShown);
-        y--;
-    }
+    var newValue = getNewValue();
+    setNewValue(newValue);
+    timer = setInterval(function () {
+        changeLoop();
+    }, timeValueShown);
 }
 function hit() {
     if (currentTarget === currentValue) {
-        changeLoop(5);
+        changeLoop();
     }
 }
 function start() {
     currentTarget = getNewValue();
-    changeLoop(20);
+    changeLoop();
+    setTimeout(function () {
+        clearInterval(timer);
+        $("#start").removeAttr("disabled");
+    }, secondsInAGame * 1000);
     $("#target").text(currentTarget);
     $("#start").prop("disabled", true);
 }

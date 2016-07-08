@@ -23,7 +23,7 @@ function getNewValue() {
 var timer : number;
 var currentValue : string;
 var currentTarget : string;
-const secondsInAGame = 60; 
+const secondsInAGame = 15; 
 
 function setNewValue(value: string) {
     const faderSpeed = 400;
@@ -38,36 +38,34 @@ function setNewValue(value: string) {
     });
 }
 
-function changeLoop(x : number) {
-    if (x === 0) {
-        return;
-    }
-
+function changeLoop() {
     const timeValueShown = 5000;
+    
     clearInterval(timer);
 
-    var y = x;
+    var newValue = getNewValue();
+    setNewValue(newValue);
 
-    if (y > 0) {
-        var newValue = getNewValue();
-        setNewValue(newValue);
-
-        timer = setInterval(function() {
-           changeLoop(y); 
-        }, timeValueShown);
-        y--;    
-    }
+    timer = setInterval(function() {
+        changeLoop(); 
+    }, timeValueShown);
 }
 
 function hit() {
     if (currentTarget === currentValue) {
-        changeLoop(5);
+        changeLoop();
     }
 }
 
 function start() {
     currentTarget = getNewValue();
-    changeLoop(20);
+    changeLoop();
+    
+    setTimeout(function() {
+        clearInterval(timer);
+        $("#start").removeAttr("disabled");
+    }, secondsInAGame * 1000);
+
     $("#target").text(currentTarget);
     $("#start").prop("disabled", true);
 }
