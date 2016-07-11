@@ -1,8 +1,11 @@
 <html>
     <head>
         <title>Keys v3</title>
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
         <script src="Keys.js"></script>
+        <link rel="stylesheet" href="main.css">
     </head>
     <body>
         Score: <span id="score">0</span>
@@ -12,5 +15,7 @@
         <span id="changer">Press Start!</span>
         <button type="button" id="start" onclick="start();">Start</button>
         <button type="button" id="hit" onclick="hit();">Hit</button>
+        <br />
+        <div id="progressBar" />
     </body>
 </html>

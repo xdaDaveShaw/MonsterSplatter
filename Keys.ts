@@ -1,4 +1,5 @@
 /// <reference path="refs/jquery.d.ts"/>
+/// <reference path="refs/jqueryui.d.ts"/>
 
 const debugToConsole = false;
 
@@ -35,12 +36,15 @@ function disableButton(selector: string) {
 
 // Functions above this line do not change state!
 
-let timer: number;
+let changeValueTimer: number;
+let countdownTimer: number;
 let currentValue: string;
 let currentTarget: string;
 let currentScore: number = 0;
 let canHit = false;
-const secondsInAGame = 15;
+let ticksRemaining: number;
+const secondsInAGame = 10;
+const tickSize = 500;
 
 function setScore(score: number) {
     currentScore = score;
@@ -55,18 +59,20 @@ function incrementScore() {
 function setNewValue(value: string) {
     const faderSpeed = 300;
 
-    let changer = $("#changer");
-    changer.fadeOut(faderSpeed, function () {
-        changer.text(value);
-        changer.fadeIn(faderSpeed, function() {
-            // Nothing ATM
-            currentValue = value;
-            log("set current value to: " + value);
+    if (ticksRemaining > 0) {
+        let changer = $("#changer");
+        changer.fadeOut(faderSpeed, function () {
+            changer.text(value);
+            changer.fadeIn(faderSpeed, function() {
+                // Nothing ATM
+                currentValue = value;
+                log("set current value to: " + value);
 
-            canHit = true;
-            log("canhit: true, value: " + value);
+                canHit = true;
+                log("canhit: true, value: " + value);
+            });
         });
-    });
+    }
 }
 
 function changeLoop() {
@@ -74,11 +80,11 @@ function changeLoop() {
 
     let newValue = getNewValue();
 
-    clearInterval(timer);
+    clearInterval(changeValueTimer);
 
     setNewValue(newValue);
 
-    timer = setInterval(function() {
+    changeValueTimer = setInterval(function() {
         changeLoop();
     }, timeValueShown);
 }
@@ -96,9 +102,28 @@ function hit() {
 }
 
 function stopGame() {
-    clearInterval(timer);
     enableButton("#start");
     disableButton("#hit");
+    clearInterval(changeValueTimer);
+    clearTimeout(countdownTimer);
+}
+
+function countdownTime() {
+    if (ticksRemaining === 0) {
+        log("Stopped: " + new Date().toISOString());
+        stopGame();
+    }
+    else {
+        ticksRemaining--;
+        log("ticksRemaining: " + ticksRemaining);
+
+        clearTimeout(countdownTimer);
+
+        countdownTimer = setTimeout(function() {
+            countdownTime();
+        }, tickSize);
+    }
+    $("#progressBar").progressbar("option", "value", ticksRemaining);
 }
 
 function start() {
@@ -111,7 +136,12 @@ function start() {
     changeLoop();
     enableButton("#hit");
 
-    setTimeout(function() {
-        stopGame();
-    }, secondsInAGame * 1000);
+    ticksRemaining = secondsInAGame * (1000 / tickSize);
+
+    log("Started: " + new Date().toISOString());
+
+    $("#progressBar").progressbar({
+        max: ticksRemaining});
+
+    countdownTime();
 }
