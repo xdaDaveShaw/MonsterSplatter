@@ -1,5 +1,13 @@
 /// <reference path="refs/jquery.d.ts"/>
 
+const debugToConsole = false;
+
+function log(message: string) {
+    if (debugToConsole) {
+        console.log(message);
+    }
+}
+
 function randomIntFromInterval(min: number, max: number) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
@@ -31,6 +39,7 @@ let timer: number;
 let currentValue: string;
 let currentTarget: string;
 let currentScore: number = 0;
+let canHit = false;
 const secondsInAGame = 15;
 
 function setScore(score: number) {
@@ -39,18 +48,23 @@ function setScore(score: number) {
 }
 
 function incrementScore() {
+    log("incrementing score. current score: "  + currentScore);
     setScore(currentScore + 5);
 }
 
 function setNewValue(value: string) {
-    const faderSpeed = 400;
+    const faderSpeed = 300;
 
     let changer = $("#changer");
     changer.fadeOut(faderSpeed, function () {
-        currentValue = value;
         changer.text(value);
         changer.fadeIn(faderSpeed, function() {
             // Nothing ATM
+            currentValue = value;
+            log("set current value to: " + value);
+
+            canHit = true;
+            log("canhit: true, value: " + value);
         });
     });
 }
@@ -70,7 +84,12 @@ function changeLoop() {
 }
 
 function hit() {
-    if (currentTarget === currentValue) {
+    log("hit called: canHit : " + canHit + " currentValue: " + currentValue);
+
+    if (canHit && currentTarget === currentValue) {
+        log("setting canhit: false");
+        canHit = false;
+        log("set canhit: false");
         incrementScore();
         changeLoop();
     }
