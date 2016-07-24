@@ -1,6 +1,6 @@
 /// <reference path="refs/jquery.d.ts"/>
 /// <reference path="refs/jqueryui.d.ts"/>
-var debugToConsole = true;
+var debugToConsole = false;
 function log(message) {
     if (debugToConsole) {
         console.log(message);
@@ -64,14 +64,6 @@ function setNewValue(firstValue) {
         });
     }
 }
-function changeLoop() {
-    var timeValueShown = 2500;
-    clearInterval(changeValueTimer);
-    setNewValue();
-    changeValueTimer = setInterval(function () {
-        changeLoop();
-    }, timeValueShown);
-}
 function hit() {
     log("hit called: canHit : " + canHit + " currentValue: " + currentValue);
     if (canHit && currentTarget === currentValue) {
@@ -79,7 +71,6 @@ function hit() {
         canHit = false;
         log("set canhit: false");
         incrementScore();
-        // changeLoop();
         setNewValue();
     }
 }
@@ -114,7 +105,6 @@ function start() {
     setScore(0);
     currentTarget = getNewValue();
     $("#target").text(currentTarget);
-    // changeLoop();
     enableButton("#hit");
     ticksRemainingInGame = secondsInAGame * (1000 / tickLengthInMs);
     log("Started: " + new Date().toISOString());
