@@ -67,12 +67,11 @@ function setNewValue(firstValue: boolean = false) {
         let changer = $("#changer");
         changer.fadeOut(firstValue ? 0 : faderSpeed, function () {
             changer.text(value);
-            changer.fadeIn(faderSpeed, function() {
-                currentValue = value;
-                log("set current value to: " + value);
-                canHit = true;
-                log("canhit: true, value: " + value);
-            });
+            currentValue = value;
+            log("set current value to: " + value);
+            canHit = true;
+            log("canhit: true, value: " + value);
+            changer.fadeIn(faderSpeed);
         });
     }
 }

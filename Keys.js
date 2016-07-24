@@ -55,12 +55,11 @@ function setNewValue(firstValue) {
         var changer_1 = $("#changer");
         changer_1.fadeOut(firstValue ? 0 : faderSpeed, function () {
             changer_1.text(value_1);
-            changer_1.fadeIn(faderSpeed, function () {
-                currentValue = value_1;
-                log("set current value to: " + value_1);
-                canHit = true;
-                log("canhit: true, value: " + value_1);
-            });
+            currentValue = value_1;
+            log("set current value to: " + value_1);
+            canHit = true;
+            log("canhit: true, value: " + value_1);
+            changer_1.fadeIn(faderSpeed);
         });
     }
 }
