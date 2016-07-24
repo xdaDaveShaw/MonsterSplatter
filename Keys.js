@@ -31,7 +31,6 @@ function disableButton(selector) {
 var secondsInAGame = 20;
 var tickLengthInMs = 250;
 var valueDisplayedForInMs = 2500;
-var changeValueTimer;
 var countdownTimer;
 var currentValue;
 var currentTarget;
@@ -76,7 +75,6 @@ function hit() {
 function stopGame() {
     enableButton("#start");
     disableButton("#hit");
-    clearInterval(changeValueTimer);
     clearTimeout(countdownTimer);
 }
 function countdownTime() {

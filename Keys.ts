@@ -40,7 +40,6 @@ const secondsInAGame = 20;
 const tickLengthInMs = 250;
 const valueDisplayedForInMs = 2500;
 
-let changeValueTimer: number;
 let countdownTimer: number;
 let currentValue: string;
 let currentTarget: string;
@@ -91,7 +90,6 @@ function hit() {
 function stopGame() {
     enableButton("#start");
     disableButton("#hit");
-    clearInterval(changeValueTimer);
     clearTimeout(countdownTimer);
 }
 
