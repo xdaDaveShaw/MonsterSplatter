@@ -10,7 +10,7 @@ function randomIntFromInterval(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
 function getNewValue() {
-    var randomChar = randomIntFromInterval(65, 66);
+    var randomChar = randomIntFromInterval(65, 68);
     // return String.fromCharCode(randomChar);
     // Temp to ensure non-sequential values
     var newV = String.fromCharCode(randomChar);
@@ -28,9 +28,9 @@ function disableButton(selector) {
     $(selector).prop("disabled", true);
 }
 // Functions above this line do not change state!
-var secondsInAGame = 20;
+var secondsInAGame = 30;
 var tickLengthInMs = 250;
-var valueDisplayedForInMs = 2500;
+var valueDisplayedForInMs = 1500;
 var countdownTimer;
 var currentValue;
 var currentTarget;
@@ -110,4 +110,9 @@ function start() {
     setNewValue(true);
     countdownTime();
 }
+document.onkeypress = function (e) {
+    if (e.keyCode === 72 || e.keyCode === 104) {
+        hit();
+    }
+};
 //# sourceMappingURL=Keys.js.map

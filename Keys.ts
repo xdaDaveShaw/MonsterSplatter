@@ -14,7 +14,7 @@ function randomIntFromInterval(min: number, max: number) {
 }
 
 function getNewValue() {
-    let randomChar = randomIntFromInterval(65, 66);
+    let randomChar = randomIntFromInterval(65, 68);
     // return String.fromCharCode(randomChar);
     // Temp to ensure non-sequential values
     let newV = String.fromCharCode(randomChar);
@@ -36,9 +36,9 @@ function disableButton(selector: string) {
 
 // Functions above this line do not change state!
 
-const secondsInAGame = 20;
+const secondsInAGame = 30;
 const tickLengthInMs = 250;
-const valueDisplayedForInMs = 2500;
+const valueDisplayedForInMs = 1500;
 
 let countdownTimer: number;
 let currentValue: string;
@@ -137,3 +137,9 @@ function start() {
 
     countdownTime();
 }
+
+document.onkeypress = function(e) {
+    if (e.keyCode === 72 || e.keyCode === 104) {
+        hit();
+    }
+};
