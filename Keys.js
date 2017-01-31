@@ -65,6 +65,7 @@ function hit() {
         log("set canhit: false");
         incrementScore();
         setNewValue();
+        elapsedTicks = 0;
     }
 }
 function stopGame() {

@@ -36,9 +36,9 @@ function disableButton(selector: string) {
 
 // Functions above this line do not change state!
 
-const secondsInAGame = 30;
-const tickLengthInMs = 250;
-const valueDisplayedForInMs = 1500;
+const secondsInAGame = 30; //Total length of the game in seconds
+const tickLengthInMs = 250; //Each tick is a countdown on the timer.
+const valueDisplayedForInMs = 1500; //How long you have to think about the match.
 
 let countdownTimer: number;
 let currentValue: string;
@@ -84,6 +84,7 @@ function hit() {
         log("set canhit: false");
         incrementScore();
         setNewValue();
+        elapsedTicks = 0;
     }
 }
 
