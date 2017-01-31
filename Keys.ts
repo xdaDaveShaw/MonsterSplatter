@@ -13,7 +13,7 @@ function randomIntFromInterval(min: number, max: number) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-function getNewValue() : string {
+function getNewValue(): string {
     let randomChar = randomIntFromInterval(65, 68);
     // return String.fromCharCode(randomChar);
     // Temp to ensure non-sequential values
@@ -54,7 +54,7 @@ function setScore(score: number) {
 }
 
 function incrementScore() {
-    log("incrementing score. current score: "  + currentScore);
+    log("incrementing score. current score: " + currentScore);
     setScore(currentScore + 5);
 }
 
@@ -104,7 +104,7 @@ function countdownTime() {
 
         clearTimeout(countdownTimer);
 
-        countdownTimer = setTimeout(function() {
+        countdownTimer = setTimeout(function () {
             if (elapsedTicks * tickLengthInMs >= valueDisplayedForInMs) {
                 elapsedTicks = 0;
                 setNewValue();
@@ -131,14 +131,15 @@ function start() {
     log("Started: " + new Date().toISOString());
 
     $("#progressBar").progressbar({
-        max: ticksRemainingInGame});
+        max: ticksRemainingInGame
+    });
 
     setNewValue(true);
 
     countdownTime();
 }
 
-document.onkeypress = function(e) {
+document.onkeypress = function (e) {
     if (e.keyCode === 72 || e.keyCode === 104) { //H (maybe?)
         hit();
     }
