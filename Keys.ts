@@ -13,7 +13,7 @@ function randomIntFromInterval(min: number, max: number) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-function getNewValue() {
+function getNewValue() : string {
     let randomChar = randomIntFromInterval(65, 68);
     // return String.fromCharCode(randomChar);
     // Temp to ensure non-sequential values
@@ -139,7 +139,7 @@ function start() {
 }
 
 document.onkeypress = function(e) {
-    if (e.keyCode === 72 || e.keyCode === 104) {
+    if (e.keyCode === 72 || e.keyCode === 104) { //H (maybe?)
         hit();
     }
 };

@@ -1,7 +1,26 @@
+// {
+//     "compilerOptions": {
+//         "target": "es5",
+//         "module": "commonjs",
+//         "sourceMap": true
+//     }
+// }
 {
+    "compileOnSave": true,
     "compilerOptions": {
-        "target": "es5",
-        "module": "commonjs",
+        "module": "system",
+        "noImplicitAny": true,
+        "removeComments": true,
+        "preserveConstEnums": true,
+        "outFile": "keys.js",
         "sourceMap": true
-    }
+    },
+    "include": [
+        "**/*"
+    ],
+    "exclude": [
+        "node_modules",
+        "refs",
+        "**/*.spec.ts"
+    ]
 }

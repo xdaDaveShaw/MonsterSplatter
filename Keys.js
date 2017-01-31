@@ -1,5 +1,3 @@
-/// <reference path="refs/jquery.d.ts"/>
-/// <reference path="refs/jqueryui.d.ts"/>
 var debugToConsole = false;
 function log(message) {
     if (debugToConsole) {
@@ -11,8 +9,6 @@ function randomIntFromInterval(min, max) {
 }
 function getNewValue() {
     var randomChar = randomIntFromInterval(65, 68);
-    // return String.fromCharCode(randomChar);
-    // Temp to ensure non-sequential values
     var newV = String.fromCharCode(randomChar);
     if (currentValue === newV) {
         return getNewValue();
@@ -27,7 +23,6 @@ function enableButton(selector) {
 function disableButton(selector) {
     $(selector).prop("disabled", true);
 }
-// Functions above this line do not change state!
 var secondsInAGame = 30;
 var tickLengthInMs = 250;
 var valueDisplayedForInMs = 1500;
@@ -106,7 +101,8 @@ function start() {
     ticksRemainingInGame = secondsInAGame * (1000 / tickLengthInMs);
     log("Started: " + new Date().toISOString());
     $("#progressBar").progressbar({
-        max: ticksRemainingInGame });
+        max: ticksRemainingInGame
+    });
     setNewValue(true);
     countdownTime();
 }
@@ -115,4 +111,4 @@ document.onkeypress = function (e) {
         hit();
     }
 };
-//# sourceMappingURL=Keys.js.map
+//# sourceMappingURL=keys.js.map
