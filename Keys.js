@@ -1,4 +1,4 @@
-var debugToConsole = false;
+var debugToConsole = true;
 function log(message) {
     if (debugToConsole) {
         console.log(message);
@@ -60,12 +60,24 @@ function setNewValue(firstValue) {
 function hit() {
     log("hit called: canHit : " + canHit + " currentValue: " + currentValue);
     if (canHit && currentTarget === currentValue) {
+        log("Hit, Target matches Value");
         log("setting canhit: false");
         canHit = false;
         log("set canhit: false");
         incrementScore();
         setNewValue();
         elapsedTicks = 0;
+    }
+    else {
+        log("Missed, disabling hit for 250ms");
+        log("setting canhit: false");
+        canHit = false;
+        log("set canhit: false");
+        setTimeout(function () {
+            log("setting canhit: true");
+            canHit = true;
+            log("set canhit: true");
+        }, 250);
     }
 }
 function stopGame() {

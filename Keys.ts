@@ -1,7 +1,7 @@
 /// <reference path="refs/jquery.d.ts"/>
 /// <reference path="refs/jqueryui.d.ts"/>
 
-const debugToConsole: boolean = false;
+const debugToConsole: boolean = true;
 
 function log(message: string): void {
     if (debugToConsole) {
@@ -78,12 +78,23 @@ function hit(): void {
     log("hit called: canHit : " + canHit + " currentValue: " + currentValue);
 
     if (canHit && currentTarget === currentValue) {
+        log("Hit, Target matches Value");
         log("setting canhit: false");
         canHit = false;
         log("set canhit: false");
         incrementScore();
         setNewValue();
         elapsedTicks = 0;
+    } else {
+        log("Missed, disabling hit for 250ms");
+        log("setting canhit: false");
+        canHit = false;
+        log("set canhit: false");
+        setTimeout(function(): void {
+            log("setting canhit: true");
+            canHit = true;
+            log("set canhit: true");
+        }, 250);
     }
 }
 
