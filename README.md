@@ -31,3 +31,7 @@ Node (and packages):
 - Open Terminal, run `live-server`
 - F5 with `Launch localhost with sourcemaps`
 - Makes changes, rebuild (`Ctrl+Shift+B`), live server picks them up.
+
+## Images
+
+Images were found on Bing using the "Free to modify, share and use" filter.
