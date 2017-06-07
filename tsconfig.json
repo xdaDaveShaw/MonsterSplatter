@@ -13,8 +13,7 @@
         "removeComments": true,
         "preserveConstEnums": true,
         "outFile": "keys.js",
-        "sourceMap": true,
-        "watch": true
+        "sourceMap": true
     },
     "include": [
         "**/*"
