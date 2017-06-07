@@ -95,6 +95,7 @@ function hit(): void {
 }
 
 function stopGame(): void {
+    canHit = false;
     enableButton("#start");
     disableButton("#hit");
     clearTimeout(countdownTimer);

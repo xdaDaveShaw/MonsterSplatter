@@ -78,6 +78,7 @@ function hit() {
     }
 }
 function stopGame() {
+    canHit = false;
     enableButton("#start");
     disableButton("#hit");
     clearTimeout(countdownTimer);
