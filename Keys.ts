@@ -17,14 +17,7 @@ const numberOfMonsters: number = 4;
 
 function getNewValue(): string {
     let randomNumber: number  = randomIntFromInterval(1, numberOfMonsters);
-    // return String.fromCharCode(randomChar);
-    // temp to ensure non-sequential values
-    let newV: string = String(randomNumber);
-    if (currentValue === newV) {
-        return getNewValue();
-    } else {
-        return newV;
-    }
+    return String(randomNumber);
 }
 
 function enableButton(selector: string): void {

@@ -10,13 +10,7 @@ function randomIntFromInterval(min, max) {
 var numberOfMonsters = 4;
 function getNewValue() {
     var randomNumber = randomIntFromInterval(1, numberOfMonsters);
-    var newV = String(randomNumber);
-    if (currentValue === newV) {
-        return getNewValue();
-    }
-    else {
-        return newV;
-    }
+    return String(randomNumber);
 }
 function enableButton(selector) {
     $(selector).removeAttr("disabled");
