@@ -7,9 +7,10 @@ function log(message) {
 function randomIntFromInterval(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
+var numberOfMonsters = 4;
 function getNewValue() {
-    var randomChar = randomIntFromInterval(65, 68);
-    var newV = String.fromCharCode(randomChar);
+    var randomNumber = randomIntFromInterval(1, numberOfMonsters);
+    var newV = String(randomNumber);
     if (currentValue === newV) {
         return getNewValue();
     }
@@ -44,16 +45,18 @@ function incrementScore() {
 function setNewValue(firstValue) {
     if (firstValue === void 0) { firstValue = false; }
     var faderSpeed = 300;
+    log("setNetValue called");
     if (ticksRemainingInGame > 0) {
         var value_1 = getNewValue();
-        var changer_1 = $("#changer");
-        changer_1.fadeOut(firstValue ? 0 : faderSpeed, function () {
-            changer_1.text(value_1);
+        var changer_img_1 = $("#changer_img");
+        changer_img_1.fadeOut(firstValue ? 0 : faderSpeed, function () {
+            var newImg = "images/" + value_1 + ".jpg";
+            changer_img_1.attr("src", newImg);
             currentValue = value_1;
             log("set current value to: " + value_1);
             canHit = true;
             log("canhit: true, value: " + value_1);
-            changer_1.fadeIn(faderSpeed);
+            changer_img_1.fadeIn(faderSpeed);
         });
     }
 }
@@ -109,7 +112,9 @@ function start() {
     disableButton("#start");
     setScore(0);
     currentTarget = getNewValue();
-    $("#target").text(currentTarget);
+    var targetImg = "images/" + currentTarget + ".jpg";
+    $("#target_img").attr("src", targetImg);
+    $("#start_text").hide();
     enableButton("#hit");
     ticksRemainingInGame = secondsInAGame * (1000 / tickLengthInMs);
     log("Started: " + new Date().toISOString());

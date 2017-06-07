@@ -13,3 +13,8 @@ button {
 #changer {
     color: deeppink;
 }
+
+.monster {
+    height: 200px;
+    width: 200px;
+}

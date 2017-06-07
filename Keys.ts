@@ -13,11 +13,13 @@ function randomIntFromInterval(min: number, max: number): number {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
+const numberOfMonsters: number = 4;
+
 function getNewValue(): string {
-    let randomChar: number  = randomIntFromInterval(65, 68);
+    let randomNumber: number  = randomIntFromInterval(1, numberOfMonsters);
     // return String.fromCharCode(randomChar);
     // temp to ensure non-sequential values
-    let newV: string = String.fromCharCode(randomChar);
+    let newV: string = String(randomNumber);
     if (currentValue === newV) {
         return getNewValue();
     } else {
@@ -59,17 +61,18 @@ function incrementScore(): void  {
 
 function setNewValue(firstValue: boolean = false): void {
     const faderSpeed: number = 300;
-
+    log("setNetValue called");
     if (ticksRemainingInGame > 0) {
         let value: string = getNewValue();
-        let changer: JQuery = $("#changer");
-        changer.fadeOut(firstValue ? 0 : faderSpeed, function (): void {
-            changer.text(value);
+        let changer_img: JQuery = $("#changer_img");
+        changer_img.fadeOut(firstValue ? 0 : faderSpeed, function (): void {
+            let newImg: string = "images/" + value + ".jpg";
+            changer_img.attr("src", newImg);
             currentValue = value;
             log("set current value to: " + value);
             canHit = true;
             log("canhit: true, value: " + value);
-            changer.fadeIn(faderSpeed);
+            changer_img.fadeIn(faderSpeed);
         });
     }
 }
@@ -132,7 +135,10 @@ function start(): void {
     setScore(0);
 
     currentTarget = getNewValue();
-    $("#target").text(currentTarget);
+    let targetImg: string = "images/" + currentTarget + ".jpg";
+    $("#target_img").attr("src", targetImg);
+
+    $("#start_text").hide();
 
     enableButton("#hit");
 
