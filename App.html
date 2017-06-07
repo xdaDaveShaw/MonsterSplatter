@@ -8,20 +8,28 @@
         <link rel="stylesheet" href="main.css">
     </head>
     <body>
-        <center>
-            Score: <span id="score">0</span>
-            <p />
-            Target<br />
-            <img id="target_img" class="monster" src="images/ready.jpg"></img>
-            <br />
-            <img id="changer_img" class="monster" src="images/ready.jpg"></img>
-            </br>
-            <span id="start_text">Press Start!</span>
-            <p />
-            <button type="button" id="start" onclick="start();">Start</button>
-            <button type="button" id="hit" onclick="hit();">Hit</button>
-            <br />
-            <div id="progressBar" />
-        </center>
+        <table>
+            <tr>
+                <td colspan="2" class="score">Score: <span id="score">0</span></td>                
+            </tr>
+            <tr>
+                <th>Target monster</th>
+                <th>Current  monster</th>
+            </tr>
+            <tr>
+                <td><img id="target_img" class="monster" src="images/ready.jpg"></img></td>
+                <td><img id="changer_img" class="monster" src="images/ready.jpg"></img></td>
+            </tr>
+            <tr>
+                <td colspan="2"><span id="start_text">Press Start!</span></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <button type="button" id="start" onclick="start();">Start</button>
+                    <button type="button" id="hit" onclick="hit();">Hit</button>
+                </td>
+            </tr>
+        </table>
+        <div id="progressBar" />
     </body>
 </html>

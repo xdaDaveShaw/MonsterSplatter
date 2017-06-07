@@ -1,17 +1,22 @@
-.letter {
-    font-size: 48px;
-}
 
 button {
-    font-size: 24px;
+    font-size: 1.4em;
 }
 
-#target {
-    color: green;
+table {
+    width: 100%;
 }
 
-#changer {
-    color: deeppink;
+td {
+    text-align: center;
+}
+
+th {
+    font-size: 1.2em;
+}
+
+.score {
+    font-size: 1.8em;
 }
 
 .monster {
