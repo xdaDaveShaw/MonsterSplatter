@@ -154,3 +154,8 @@ document.onkeypress = function (e: KeyboardEvent): void {
         hit();
     }
 };
+
+$(document).ready(function(): void {
+    $("#start").click(start);
+    $("#hit").click(hit);
+});

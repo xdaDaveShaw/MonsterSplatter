@@ -123,4 +123,8 @@ document.onkeypress = function (e) {
         hit();
     }
 };
+$(document).ready(function () {
+    $("#start").click(start);
+    $("#hit").click(hit);
+});
 //# sourceMappingURL=keys.js.map
