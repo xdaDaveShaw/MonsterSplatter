@@ -125,7 +125,7 @@ function start() {
     countdownTime();
 }
 document.onkeypress = function (e) {
-    if (e.keyCode === 72 || e.keyCode === 104) {
+    if (e.keyCode === 32 || e.keyCode === 72 || e.keyCode === 104) {
         hit();
     }
 };

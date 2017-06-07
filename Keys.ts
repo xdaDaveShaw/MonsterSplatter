@@ -156,7 +156,8 @@ function start(): void {
 }
 
 document.onkeypress = function (e: KeyboardEvent): void {
-    if (e.keyCode === 72 || e.keyCode === 104) { // h (maybe?)
+    // space or "h" (maybe?)
+    if (e.keyCode === 32 || e.keyCode === 72 || e.keyCode === 104) { 
         hit();
     }
 };
