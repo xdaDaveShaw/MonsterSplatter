@@ -39,6 +39,7 @@ let currentValue: string;
 let currentTarget: string;
 let currentScore: number = 0;
 let canHit: boolean = false;
+let stopped: boolean = false;
 let ticksRemainingInGame: number;
 let elapsedTicks: number = 0;
 
@@ -64,38 +65,44 @@ function setNewValue(firstValue: boolean = false): void {
             currentValue = value;
             log("set current value to: " + value);
             canHit = true;
-            log("canhit: true, value: " + value);
+            log("canHit: true, value: " + value);
             changer_img.fadeIn(faderSpeed);
         });
     }
 }
 
 function hit(): void {
-    log("hit called: canHit : " + canHit + " currentValue: " + currentValue);
+    log("hit called: canHit : " + canHit + " currentValue: " + currentValue + " stopped: " + stopped);
+
+    if (stopped) {
+        return;
+    }
 
     if (canHit && currentTarget === currentValue) {
         log("Hit, Target matches Value");
-        log("setting canhit: false");
+        log("setting canHit: false");
         canHit = false;
-        log("set canhit: false");
+        log("set canHit: false");
         incrementScore();
         setNewValue();
         elapsedTicks = 0;
-    } else {
+    } else if (canHit) {
         log("Missed, disabling hit for 250ms");
-        log("setting canhit: false");
+        log("setting canHit: false");
         canHit = false;
-        log("set canhit: false");
+        log("set canHit: false");
         setTimeout(function(): void {
-            log("setting canhit: true");
+            log("setting canHit: true");
             canHit = true;
-            log("set canhit: true");
+            log("set canHit: true");
         }, 250);
     }
 }
 
 function stopGame(): void {
+    log("Stopped: " + new Date().toISOString());
     canHit = false;
+    stopped = true;
     enableButton("#start");
     disableButton("#hit");
     clearTimeout(countdownTimer);
@@ -138,6 +145,8 @@ function start(): void {
 
     ticksRemainingInGame = secondsInAGame * (1000 / tickLengthInMs);
 
+    stopped = false;
+
     log("Started: " + new Date().toISOString());
 
     $("#progressBar").progressbar({
@@ -151,7 +160,7 @@ function start(): void {
 
 document.onkeypress = function (e: KeyboardEvent): void {
     // space or "h" (maybe?)
-    if (e.keyCode === 32 || e.keyCode === 72 || e.keyCode === 104) { 
+    if (e.keyCode === 32 || e.keyCode === 72 || e.keyCode === 104) {
         hit();
     }
 };

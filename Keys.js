@@ -26,6 +26,7 @@ var currentValue;
 var currentTarget;
 var currentScore = 0;
 var canHit = false;
+var stopped = false;
 var ticksRemainingInGame;
 var elapsedTicks = 0;
 function setScore(score) {
@@ -49,36 +50,41 @@ function setNewValue(firstValue) {
             currentValue = value_1;
             log("set current value to: " + value_1);
             canHit = true;
-            log("canhit: true, value: " + value_1);
+            log("canHit: true, value: " + value_1);
             changer_img_1.fadeIn(faderSpeed);
         });
     }
 }
 function hit() {
-    log("hit called: canHit : " + canHit + " currentValue: " + currentValue);
+    log("hit called: canHit : " + canHit + " currentValue: " + currentValue + " stopped: " + stopped);
+    if (stopped) {
+        return;
+    }
     if (canHit && currentTarget === currentValue) {
         log("Hit, Target matches Value");
-        log("setting canhit: false");
+        log("setting canHit: false");
         canHit = false;
-        log("set canhit: false");
+        log("set canHit: false");
         incrementScore();
         setNewValue();
         elapsedTicks = 0;
     }
     else {
         log("Missed, disabling hit for 250ms");
-        log("setting canhit: false");
+        log("setting canHit: false");
         canHit = false;
-        log("set canhit: false");
+        log("set canHit: false");
         setTimeout(function () {
-            log("setting canhit: true");
+            log("setting canHit: true");
             canHit = true;
-            log("set canhit: true");
+            log("set canHit: true");
         }, 250);
     }
 }
 function stopGame() {
+    log("Stopped: " + new Date().toISOString());
     canHit = false;
+    stopped = true;
     enableButton("#start");
     disableButton("#hit");
     clearTimeout(countdownTimer);
@@ -112,6 +118,7 @@ function start() {
     $("#start_text").hide();
     enableButton("#hit");
     ticksRemainingInGame = secondsInAGame * (1000 / tickLengthInMs);
+    stopped = false;
     log("Started: " + new Date().toISOString());
     $("#progressBar").progressbar({
         max: ticksRemainingInGame
