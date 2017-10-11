@@ -1,4 +1,4 @@
-var debugToConsole = true;
+const debugToConsole = true;
 function log(message) {
     if (debugToConsole) {
         console.log(message);
@@ -7,9 +7,9 @@ function log(message) {
 function randomIntFromInterval(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
-var numberOfMonsters = 4;
+const numberOfMonsters = 4;
 function getNewValue() {
-    var randomNumber = randomIntFromInterval(1, numberOfMonsters);
+    let randomNumber = randomIntFromInterval(1, numberOfMonsters);
     return String(randomNumber);
 }
 function enableButton(selector) {
@@ -18,17 +18,17 @@ function enableButton(selector) {
 function disableButton(selector) {
     $(selector).prop("disabled", true);
 }
-var secondsInAGame = 30;
-var tickLengthInMs = 250;
-var valueDisplayedForInMs = 1500;
-var countdownTimer;
-var currentValue;
-var currentTarget;
-var currentScore = 0;
-var canHit = false;
-var stopped = false;
-var ticksRemainingInGame;
-var elapsedTicks = 0;
+const secondsInAGame = 30;
+const tickLengthInMs = 250;
+const valueDisplayedForInMs = 1500;
+let countdownTimer;
+let currentValue;
+let currentTarget;
+let currentScore = 0;
+let canHit = false;
+let stopped = false;
+let ticksRemainingInGame;
+let elapsedTicks = 0;
 function setScore(score) {
     currentScore = score;
     $("#score").text(score);
@@ -37,21 +37,20 @@ function incrementScore() {
     log("incrementing score. current score: " + currentScore);
     setScore(currentScore + 5);
 }
-function setNewValue(firstValue) {
-    if (firstValue === void 0) { firstValue = false; }
-    var faderSpeed = 300;
+function setNewValue(firstValue = false) {
+    const faderSpeed = 300;
     log("setNetValue called");
     if (ticksRemainingInGame > 0) {
-        var value_1 = getNewValue();
-        var changer_img_1 = $("#changer_img");
-        changer_img_1.fadeOut(firstValue ? 0 : faderSpeed, function () {
-            var newImg = "images/" + value_1 + ".jpg";
-            changer_img_1.attr("src", newImg);
-            currentValue = value_1;
-            log("set current value to: " + value_1);
+        let value = getNewValue();
+        let changer_img = $("#changer_img");
+        changer_img.fadeOut(firstValue ? 0 : faderSpeed, function () {
+            let newImg = "images/" + value + ".jpg";
+            changer_img.attr("src", newImg);
+            currentValue = value;
+            log("set current value to: " + value);
             canHit = true;
-            log("canHit: true, value: " + value_1);
-            changer_img_1.fadeIn(faderSpeed);
+            log("canHit: true, value: " + value);
+            changer_img.fadeIn(faderSpeed);
         });
     }
 }
@@ -69,7 +68,7 @@ function hit() {
         setNewValue();
         elapsedTicks = 0;
     }
-    else {
+    else if (canHit) {
         log("Missed, disabling hit for 250ms");
         log("setting canHit: false");
         canHit = false;
@@ -113,7 +112,7 @@ function start() {
     disableButton("#start");
     setScore(0);
     currentTarget = getNewValue();
-    var targetImg = "images/" + currentTarget + ".jpg";
+    let targetImg = "images/" + currentTarget + ".jpg";
     $("#target_img").attr("src", targetImg);
     $("#start_text").hide();
     enableButton("#hit");

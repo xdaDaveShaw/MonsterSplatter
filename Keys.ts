@@ -1,6 +1,3 @@
-/// <reference path="refs/jquery.d.ts"/>
-/// <reference path="refs/jqueryui.d.ts"/>
-
 const debugToConsole: boolean = true;
 
 function log(message: string): void {

@@ -25,6 +25,8 @@ Node (and packages):
 
 - `npm install -g tslint typescript`
 - `npm install -g live-server`
+- `npm install --save-dev @types/jquery`
+- `npm install --save-dev @types/jqueryui`
 
 ## Debugging in Code
 

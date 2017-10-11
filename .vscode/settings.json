@@ -1,5 +1,8 @@
 // Place your settings in this file to overwrite default and user settings.
 {
     "tslint.validateWithDefaultConfig": true,
-    "typescript.check.tscVersion": false
+    "spellchecker.ignoreFileExtensions": [
+        "js",
+        "map"
+    ]
 }
