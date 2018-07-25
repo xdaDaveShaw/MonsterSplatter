@@ -13,10 +13,11 @@ let init () =
     Score = 0 }, Cmd.none
 
 let update msg model =
-  match model, msg with
-  | model, HitPressed ->
-    if (model.CurrentMonster = model.TargetMonster) then
-      { model with Score = model.Score + 5 }, Cmd.none
-    else
-      model, Cmd.none
-  | _, _ -> model, Cmd.none
+  // match model, msg with
+  // | model, HitPressed ->
+  //   if (model.CurrentMonster = model.TargetMonster) then
+  //     { model with Score = model.Score + 5 }, Cmd.none
+  //   else
+  //     model, Cmd.none
+  // | _, _ -> 
+  model, Cmd.none

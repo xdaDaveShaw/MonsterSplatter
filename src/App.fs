@@ -19,23 +19,7 @@ let root model dispatch =
 
   div
     []
-    [ div
-        [ ClassName "navbar-bg" ]
-        [ div
-            [ ClassName "container" ]
-            [] ]
-      div
-        [ ClassName "section" ]
-        [ div
-            [ ClassName "container" ]
-            [ div
-                [ ClassName "columns" ]
-                [ div
-                    [ ClassName "column is-3" ]
-                    []
-                  div
-                    [ ClassName "column" ]
-                    [] ] ] ] ]
+    [ str "Hello" ]
 
 open Elmish.React
 open Elmish.Debug
