@@ -32,17 +32,17 @@ let childTile title content =
           (Heading.h2 [ ] [ str title ] :: content)
   ]
 
-let targetTile = 
+let targetTile model = 
   childTile "Target" [
     Image.image [ Image.IsSquare ] [
-      img [ Src("images\\ready.jpg"); ]
+      img [ Src( sprintf "images\\%s.jpg" model.TargetMonster); ]
     ]
   ]
 
-let currentTile = 
+let currentTile model = 
   childTile "Current" [
     Image.image [ ] [
-      img [ Src("images\\ready.jpg"); ]
+      img [ Src( sprintf "images\\%s.jpg" model.CurrentMonster); ]
     ]
   ]
 
@@ -55,7 +55,7 @@ let root model dispatch =
             Tag.list [ Tag.List.HasAddons; Tag.List.IsCentered; ] [
               Tag.tag [ Tag.Color Color.IsInfo; Tag.Size IsMedium; ] [
                   Level.level [] [
-                    Label.label [] [str "Score: 0"]
+                    Label.label [] [ str (sprintf "Score: %d" model.Score) ]
                   ]
               ]
             ]
@@ -63,8 +63,8 @@ let root model dispatch =
 
           yield Tile.ancestor [ Tile.Size Tile.Is12 ] [ 
             Tile.parent [ Tile.Size Tile.Is12 ] [
-              targetTile
-              currentTile
+              targetTile model
+              currentTile model
             ]
           ]
         ]
