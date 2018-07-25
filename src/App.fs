@@ -19,16 +19,39 @@ open Fulma.Elements.Form
 open Fulma.Extra.FontAwesome
 open Fulma.Components
 open Fulma.BulmaClasses
+open Fulma.BulmaClasses.Bulma
 
 
 importAll "../sass/main.sass"
 
 
+let targetTile = 
+  Tile.child [] [
+    div [] [
+      img [ Src "images\\ready.jpg" ]
+    ]
+  ]
+
+let currentTile = 
+  Tile.child [] [
+    div [] [
+      img [ Src "images\\ready.jpg" ]
+    ]
+  ]
+
 let root model dispatch =
 
   div
-    []
-    [ str "Hello" ]
+    [] [ 
+      Container.container [] [
+        yield Tile.ancestor [] [ 
+          Tile.parent [ Tile.is4 ] [
+            targetTile
+            currentTile
+          ]
+        ]
+      ]
+    ]
 
 open Elmish.React
 open Elmish.Debug
