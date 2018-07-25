@@ -6,7 +6,7 @@ open Elmish.Browser.UrlParser
 open Fable.Core
 open Fable.Core.JsInterop
 open Fable.Import
-open Fable.Import.Browser
+//open Fable.Import.Browser
 open Types
 open App.State
 open Fable.Helpers.React
@@ -20,22 +20,29 @@ open Fulma.Extra.FontAwesome
 open Fulma.Components
 open Fulma.BulmaClasses
 open Fulma.BulmaClasses.Bulma
+open Fable
+open System.ComponentModel
 
 
 importAll "../sass/main.sass"
 
+let childTile title content =
+  Tile.tile [ ] [
+      Notification.notification [ Notification.Props [ Style [ Height "100%"; Width "100%" ] ] ]
+          (Heading.h2 [ ] [ str title ] :: content)
+  ]
 
 let targetTile = 
-  Tile.child [] [
-    div [] [
-      img [ Src "images\\ready.jpg" ]
+  childTile "Target" [
+    Image.image [ Image.IsSquare ] [
+      img [ Src("images\\ready.jpg"); ]
     ]
   ]
 
 let currentTile = 
-  Tile.child [] [
-    div [] [
-      img [ Src "images\\ready.jpg" ]
+  childTile "Current" [
+    Image.image [ ] [
+      img [ Src("images\\ready.jpg"); ]
     ]
   ]
 
@@ -43,22 +50,25 @@ let root model dispatch =
 
   div
     [] [ 
-      Container.container [] [
-        yield Field.div [] [
-          Tag.list [ Tag.List.HasAddons; Tag.List.IsCentered; ] [
-            Tag.tag [ Tag.Color Color.IsInfo; Tag.Size IsMedium; ] [
-                str "Score 0"
+      Container.container [ ] [
+          yield Field.div [] [
+            Tag.list [ Tag.List.HasAddons; Tag.List.IsCentered; ] [
+              Tag.tag [ Tag.Color Color.IsInfo; Tag.Size IsMedium; ] [
+                  Level.level [] [
+                    Label.label [] [str "Score: 0"]
+                  ]
+              ]
+            ]
+          ]
+
+          yield Tile.ancestor [ Tile.Size Tile.Is12 ] [ 
+            Tile.parent [ Tile.Size Tile.Is12 ] [
+              targetTile
+              currentTile
             ]
           ]
         ]
-        yield Tile.ancestor [] [ 
-          Tile.parent [ Tile.Size Tile.Is4 ] [
-            targetTile
-            currentTile
-          ]
-        ]
       ]
-    ]
 
 open Elmish.React
 open Elmish.Debug
