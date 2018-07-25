@@ -44,8 +44,15 @@ let root model dispatch =
   div
     [] [ 
       Container.container [] [
+        yield Field.div [] [
+          Tag.list [ Tag.List.HasAddons; Tag.List.IsCentered; ] [
+            Tag.tag [ Tag.Color Color.IsInfo; Tag.Size IsMedium; ] [
+                str "Score 0"
+            ]
+          ]
+        ]
         yield Tile.ancestor [] [ 
-          Tile.parent [ Tile.is4 ] [
+          Tile.parent [ Tile.Size Tile.Is4 ] [
             targetTile
             currentTile
           ]
