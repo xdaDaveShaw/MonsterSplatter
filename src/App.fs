@@ -67,6 +67,11 @@ let root model dispatch =
               currentTile model
             ]
           ]
+
+          yield Button.button [
+            Button.IsFullwidth
+            Button.OnClick (fun _ -> dispatch HitPressed)
+          ] [ str "Hit" ]
         ]
       ]
 
