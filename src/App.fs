@@ -9,11 +9,20 @@ open Fable.Import
 open Fable.Import.Browser
 open Types
 open App.State
+open Fable.Helpers.React
+open Fable.Helpers.React.Props
+
+open Fulma
+open Fulma.Layouts
+open Fulma.Elements
+open Fulma.Elements.Form
+open Fulma.Extra.FontAwesome
+open Fulma.Components
+open Fulma.BulmaClasses
+
 
 importAll "../sass/main.sass"
 
-open Fable.Helpers.React
-open Fable.Helpers.React.Props
 
 let root model dispatch =
 
