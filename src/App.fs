@@ -70,7 +70,14 @@ let root model dispatch =
 
           yield Button.button [
             Button.IsFullwidth
+            Button.OnClick (fun _ -> dispatch StartGame)
+            Button.Disabled (model.GameState = Playing)
+          ] [ str "Start" ]
+
+          yield Button.button [
+            Button.IsFullwidth
             Button.OnClick (fun _ -> dispatch HitPressed)
+            Button.Disabled (model.GameState <> Playing)
           ] [ str "Hit" ]
         ]
       ]
