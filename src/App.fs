@@ -42,14 +42,14 @@ let childTile title content =
 
 let targetTile model = 
   childTile "Target" [
-    Image.image [ Image.IsSquare ] [
+    Image.image [ Image.Is128x128 ] [
       img [ Src( sprintf "images\\%s.jpg" model.TargetMonster); ]
     ]
   ]
 
 let currentTile model = 
   childTile "Current" [
-    Image.image [ ] [
+    Image.image [ Image.Is128x128 ] [
       img [ Src( sprintf "images\\%s.jpg" model.CurrentMonster); ]
     ]
   ]
@@ -77,13 +77,11 @@ let root model dispatch =
           ]
 
           yield Button.button [
-            Button.IsFullwidth
             Button.OnClick (fun _ -> dispatch StartGame)
             Button.Disabled (model.GameState = Playing)
           ] [ str "Start" ]
 
           yield Button.button [
-            Button.IsFullwidth
             Button.OnClick (fun _ -> dispatch HitPressed)
             Button.Disabled (model.GameState <> Playing)
           ] [ str "Hit" ]
