@@ -12,7 +12,8 @@ let init () =
     CurrentMonster = "ready"
     Score = 0
     GameState = NotStarted
-    HasHitBefore = false }, Cmd.none
+    HasHitBefore = false
+    Progress = 100 }, Cmd.none
 
 let random = new System.Random()
 
@@ -27,13 +28,36 @@ let update msg model =
   let target = model.TargetMonster
   match model, msg with
   | _, StartGame ->
-    { model with GameState = Playing; TargetMonster = (getNextMonster "") }, Cmd.none
+    { model with 
+        GameState = Playing
+        Progress = 100
+        TargetMonster = (getNextMonster "") }, 
+    Cmd.none
+  
   | model, HitPressed when model.CurrentMonster = target && not model.HasHitBefore ->
-    { model with Score = model.Score + 5; HasHitBefore = true }, Cmd.none
+    { model with 
+        Score = model.Score + 5; 
+        HasHitBefore = true }, 
+    Cmd.none
+  
   | _, HitPressed -> model, Cmd.none
+  
+  | { GameState = Playing; Progress = 0; }, TimerTick ->
+    { model with 
+        GameState = Ended }, 
+    Cmd.none
+
   | { GameState = Playing }, TimerTick ->
-    model, Cmd.ofMsg (NewMonster (getNextMonster model.CurrentMonster))
+    { model with 
+        Progress = model.Progress - 5 }, 
+    Cmd.ofMsg (NewMonster (getNextMonster model.CurrentMonster))
+
   | _, TimerTick -> model, Cmd.none
+  
   | _, NewMonster s ->
-    { model with CurrentMonster = s; HasHitBefore = false }, Cmd.none
+    { model with 
+        CurrentMonster = s; 
+        HasHitBefore = false }, 
+    Cmd.none
+  
   | _, Reset -> init()

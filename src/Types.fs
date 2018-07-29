@@ -18,5 +18,6 @@ type Model = {
     Score: int
     GameState: State
     HasHitBefore: bool
+    Progress: int
     //HighScore
   }

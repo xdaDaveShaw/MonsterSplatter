@@ -1,14 +1,13 @@
 module App.View
 
+open App.State
+open App.Types
+
 open Elmish
 open Elmish.Browser.Navigation
-open Elmish.Browser.UrlParser
-open Fable.Core
+open Elmish.HMR
+
 open Fable.Core.JsInterop
-open Fable.Import
-//open Fable.Import.Browser
-open Types
-open App.State
 open Fable.Helpers.React
 open Fable.Helpers.React.Props
 
@@ -16,12 +15,6 @@ open Fulma
 open Fulma.Layouts
 open Fulma.Elements
 open Fulma.Elements.Form
-open Fulma.Extra.FontAwesome
-open Fulma.Components
-open Fulma.BulmaClasses
-open Fulma.BulmaClasses.Bulma
-open Fable
-open System.ComponentModel
 
 
 importAll "../sass/main.sass"
@@ -75,6 +68,12 @@ let root model dispatch =
               currentTile model
             ]
           ]
+
+          yield Progress.progress [
+            Progress.Size IsLarge
+            Progress.Value model.Progress; 
+            Progress.Max 100;
+          ] []
 
           yield Button.button [
             Button.OnClick (fun _ -> dispatch StartGame)
