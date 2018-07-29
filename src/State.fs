@@ -13,7 +13,8 @@ let init () =
     Score = 0
     GameState = NotStarted
     HasHitBefore = false
-    Progress = 100 }, Cmd.none
+    Progress = 100
+    HighScore = 0 }, Cmd.none
 
 let random = new System.Random()
 
@@ -31,7 +32,8 @@ let update msg model =
     { model with 
         GameState = Playing
         Progress = 100
-        TargetMonster = (getNextMonster "") }, 
+        TargetMonster = (getNextMonster "")
+        Score = 0 }, 
     Cmd.none
   
   | model, HitPressed when model.CurrentMonster = target && not model.HasHitBefore ->
@@ -43,8 +45,10 @@ let update msg model =
   | _, HitPressed -> model, Cmd.none
   
   | { GameState = Playing; Progress = 0; }, TimerTick ->
+    let highScore = System.Math.Max(model.Score, model.HighScore)
     { model with 
-        GameState = Ended }, 
+        GameState = Ended
+        HighScore = highScore }, 
     Cmd.none
 
   | { GameState = Playing }, TimerTick ->

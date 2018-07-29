@@ -19,5 +19,5 @@ type Model = {
     GameState: State
     HasHitBefore: bool
     Progress: int
-    //HighScore
+    HighScore: int
   }

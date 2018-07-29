@@ -59,6 +59,11 @@ let root model dispatch =
                     Label.label [] [ str (sprintf "Score: %d" model.Score) ]
                   ]
               ]
+              Tag.tag [ Tag.Color Color.IsPrimary; Tag.Size IsMedium; ] [
+                  Level.level [] [
+                    Label.label [] [ str (sprintf "High Score: %d" model.HighScore) ]
+                  ]
+              ]
             ]
           ]
 
