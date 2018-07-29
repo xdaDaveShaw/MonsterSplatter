@@ -2,6 +2,7 @@ module App.Types
 
 type Msg =
   | StartGame
+  | TimerTick
   | NewMonster of string
   | HitPressed
 

@@ -26,6 +26,14 @@ open System.ComponentModel
 
 importAll "../sass/main.sass"
 
+let das dispatch = 
+  Fable.Import.Browser.window.setInterval (
+    (fun _ -> dispatch TimerTick), 1000, [||]
+  ) |> ignore
+
+let timer initial = 
+  Cmd.ofSub das
+
 let childTile title content =
   Tile.tile [ ] [
       Notification.notification [ Notification.Props [ Style [ Height "100%"; Width "100%" ] ] ]
@@ -88,6 +96,7 @@ open Elmish.HMR
 
 // App
 Program.mkProgram init update root
+|> Program.withSubscription timer
 #if DEBUG
 |> Program.withConsoleTrace
 |> Program.withDebugger
