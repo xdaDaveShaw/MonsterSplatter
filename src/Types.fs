@@ -17,6 +17,6 @@ type Model = {
     CurrentMonster: string
     Score: int
     GameState: State
-    //HasHitBefore
+    HasHitBefore: bool
     //HighScore
   }
