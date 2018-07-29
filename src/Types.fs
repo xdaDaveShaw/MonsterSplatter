@@ -5,6 +5,7 @@ type Msg =
   | TimerTick
   | NewMonster of string
   | HitPressed
+  | Reset
 
 type State = 
   | NotStarted

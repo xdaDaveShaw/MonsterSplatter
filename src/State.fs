@@ -36,3 +36,4 @@ let update msg model =
   | _, TimerTick -> model, Cmd.none
   | _, NewMonster s ->
     { model with CurrentMonster = s }, Cmd.none
+  | _, Reset -> init()

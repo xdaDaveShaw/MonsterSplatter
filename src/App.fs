@@ -85,6 +85,11 @@ let root model dispatch =
             Button.OnClick (fun _ -> dispatch HitPressed)
             Button.Disabled (model.GameState <> Playing)
           ] [ str "Hit" ]
+
+          yield Button.button [
+            Button.OnClick (fun _ -> dispatch Reset)
+            Button.Disabled (model.GameState <> Playing)
+          ] [ str "Reset" ]
         ]
       ]
 
