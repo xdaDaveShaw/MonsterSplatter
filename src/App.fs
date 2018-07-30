@@ -71,20 +71,26 @@ let root model dispatch =
             Progress.Max 100;
           ] []
 
-          yield Button.button [
-            Button.OnClick (fun _ -> dispatch StartGame)
-            Button.Disabled (model.GameState = Playing)
-          ] [ str "Start" ]
-
-          yield Button.button [
-            Button.OnClick (fun _ -> dispatch HitPressed)
-            Button.Disabled (model.GameState <> Playing)
-          ] [ str "Hit" ]
-
-          yield Button.button [
-            Button.OnClick (fun _ -> dispatch Reset)
-            Button.Disabled (model.GameState <> Playing)
-          ] [ str "Reset" ]
+          yield Level.level [] [
+            Level.item[] [
+              yield Button.button [
+                Button.OnClick (fun _ -> dispatch StartGame)
+                Button.Disabled (model.GameState = Playing)
+              ] [ str "Start" ]
+            ]
+            Level.item[] [
+              yield Button.button [
+                Button.OnClick (fun _ -> dispatch HitPressed)
+                Button.Disabled (model.GameState <> Playing)
+              ] [ str "Hit" ]
+            ]
+            Level.item[] [
+              yield Button.button [
+                Button.OnClick (fun _ -> dispatch Reset)
+                Button.Disabled (model.GameState <> Playing)
+              ] [ str "Reset" ]
+            ]
+          ]
         ]
       ]
 
