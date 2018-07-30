@@ -5,7 +5,7 @@ open Elmish.Browser.Navigation
 open Elmish.Browser.UrlParser
 open Fable.Import.Browser
 open Types
-
+open Fable.PowerPack
 
 let init () =
   { TargetMonster = "ready"
@@ -25,6 +25,12 @@ let rec getNextMonster current =
   else
     getNextMonster current
   
+let waitOneSecondImp =
+  promise {
+    do! Promise.sleep 1000
+  }
+let waitOneSecond _ = waitOneSecondImp
+
 let update msg model =
   let target = model.TargetMonster
   
@@ -36,7 +42,7 @@ let update msg model =
         TargetMonster = (getNextMonster target)
         CurrentMonster = "ready"
         Score = 0 }, 
-    Cmd.none
+    Cmd.ofPromise waitOneSecond () (fun _ -> TimerTick) Error
   
   | model, HitPressed when model.CurrentMonster = target && not model.HasHitBefore ->
     { model with 
@@ -64,6 +70,8 @@ let update msg model =
     { model with 
         CurrentMonster = s; 
         HasHitBefore = false }, 
-    Cmd.none
+    Cmd.ofPromise waitOneSecond () (fun _ -> TimerTick) Error
   
   | _, Reset -> init()
+
+  | _, Error _ -> init() //TODO

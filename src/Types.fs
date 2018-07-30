@@ -1,11 +1,14 @@
 module App.Types
 
+open System
+
 type Msg =
   | StartGame
   | TimerTick
   | NewMonster of string
   | HitPressed
   | Reset
+  | Error of Exception
 
 type State = 
   | NotStarted

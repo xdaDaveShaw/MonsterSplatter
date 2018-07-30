@@ -5,7 +5,6 @@ open App.Types
 
 open Elmish
 open Elmish.Browser.Navigation
-open Elmish.HMR
 
 open Fable.Core.JsInterop
 open Fable.Helpers.React
@@ -18,14 +17,6 @@ open Fulma.Elements.Form
 
 
 importAll "../sass/main.sass"
-
-let das dispatch = 
-  Fable.Import.Browser.window.setInterval (
-    (fun _ -> dispatch TimerTick), 1000, [||]
-  ) |> ignore
-
-let timer initial = 
-  Cmd.ofSub das
 
 let childTile title content =
   Tile.tile [ ] [
@@ -103,7 +94,6 @@ open Elmish.HMR
 
 // App
 Program.mkProgram init update root
-|> Program.withSubscription timer
 #if DEBUG
 |> Program.withConsoleTrace
 |> Program.withDebugger
