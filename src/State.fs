@@ -1,11 +1,8 @@
 module App.State
 
 open Elmish
-open Elmish.Browser.Navigation
-open Elmish.Browser.UrlParser
-open Fable.Import.Browser
-open Types
 open Fable.PowerPack
+open Types
 
 let init () =
   { TargetMonster = "ready"
