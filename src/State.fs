@@ -27,12 +27,14 @@ let rec getNextMonster current =
   
 let update msg model =
   let target = model.TargetMonster
+  
   match model, msg with
   | _, StartGame ->
     { model with 
         GameState = Playing
         Progress = 100
-        TargetMonster = (getNextMonster "")
+        TargetMonster = (getNextMonster target)
+        CurrentMonster = "ready"
         Score = 0 }, 
     Cmd.none
   
