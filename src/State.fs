@@ -40,6 +40,7 @@ let update msg model =
         TargetMonster = (getNextMonster target)
         CurrentMonster = "ready"
         NewHighScore = false
+        HasHitBefore = false
         Score = 0 },
     Cmd.ofPromise waitOneSecond () (fun _ -> TimerTick) Error
 
