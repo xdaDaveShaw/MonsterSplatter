@@ -10,7 +10,7 @@ type Msg =
   | Reset
   | Error of Exception
 
-type State = 
+type State =
   | NotStarted
   | Playing
   | Ended
@@ -22,5 +22,6 @@ type Model = {
     GameState: State
     HasHitBefore: bool
     Progress: int
+    NewHighScore: bool
     HighScore: int
   }

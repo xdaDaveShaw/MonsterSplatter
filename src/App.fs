@@ -24,14 +24,14 @@ let childTile title content =
           (Heading.h2 [ ] [ str title ] :: content)
   ]
 
-let targetTile model = 
+let targetTile model =
   childTile "Target" [
     Image.image [ Image.Is128x128 ] [
       img [ Src( sprintf "images\\%s.jpg" model.TargetMonster); ]
     ]
   ]
 
-let currentTile model = 
+let currentTile model =
   childTile "Current" [
     Image.image [ Image.Is128x128 ] [
       img [ Src( sprintf "images\\%s.jpg" model.CurrentMonster); ]
@@ -41,7 +41,7 @@ let currentTile model =
 let root model dispatch =
 
   div
-    [] [ 
+    [] [
       Container.container [ ] [
           yield Field.div [] [
             Tag.list [ Tag.List.HasAddons; Tag.List.IsCentered; ] [
@@ -58,7 +58,7 @@ let root model dispatch =
             ]
           ]
 
-          yield Tile.ancestor [ Tile.Size Tile.Is12 ] [ 
+          yield Tile.ancestor [ Tile.Size Tile.Is12 ] [
             Tile.parent [ Tile.Size Tile.Is12 ] [
               targetTile model
               currentTile model
@@ -67,7 +67,7 @@ let root model dispatch =
 
           yield Progress.progress [
             Progress.Size IsLarge
-            Progress.Value model.Progress; 
+            Progress.Value model.Progress;
             Progress.Max 100;
           ] []
 
@@ -91,6 +91,15 @@ let root model dispatch =
               ] [ str "Reset" ]
             ]
           ]
+
+          if (model.NewHighScore) then
+              yield Field.div [ Field.HasAddonsCentered ] [
+                  Notification.notification [ Notification.Color IsDanger ] [
+                      Heading.h2 [] [
+                        str (sprintf "New High Score %d !!!" model.HighScore)
+                      ]
+                  ]
+              ]
         ]
       ]
 
