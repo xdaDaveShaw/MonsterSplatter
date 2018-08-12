@@ -19,8 +19,8 @@ open Fulma.Elements.Form
 importAll "../sass/main.sass"
 
 let childTile title content =
-  Tile.tile [ ] [
-      Notification.notification [ Notification.Props [ Style [ Height "100%"; Width "100%" ] ] ]
+  Tile.tile [] [
+      Notification.notification [ Notification.Props [ Style [ Height "100%"; Width "100%" ]; ] ]
           (Heading.h2 [ ] [ str title ] :: content)
   ]
 
@@ -45,14 +45,14 @@ let root model dispatch =
       Container.container [ ] [
           yield Field.div [] [
             Tag.list [ Tag.List.HasAddons; Tag.List.IsCentered; ] [
-              Tag.tag [ Tag.Color Color.IsInfo; Tag.Size IsMedium; ] [
-                  Level.level [] [
-                    Label.label [] [ str (sprintf "Score: %d" model.Score) ]
-                  ]
-              ]
               Tag.tag [ Tag.Color Color.IsPrimary; Tag.Size IsMedium; ] [
                   Level.level [] [
                     Label.label [] [ str (sprintf "High Score: %d" model.HighScore) ]
+                  ]
+              ]
+              Tag.tag [ Tag.Color Color.IsInfo; Tag.Size IsMedium; ] [
+                  Level.level [] [
+                    Label.label [] [ str (sprintf "Score: %d" model.Score) ]
                   ]
               ]
             ]
