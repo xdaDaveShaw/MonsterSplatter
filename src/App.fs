@@ -18,23 +18,17 @@ open Fulma.Elements.Form
 
 importAll "../sass/main.sass"
 
-let childTile title content =
-  Tile.tile [ Tile.Size Tile.Is6; Tile.IsVertical; Tile.IsChild; ]
-    (Heading.h2 [ ] [ str title ] :: content)
-
-let targetTile model =
-  childTile "Target" [
-    Image.image [ Image.Is128x128 ] [
-      img [ Src( sprintf "images\\%s.jpg" model.TargetMonster); ]
+let monsterLevel title imagePath =
+    Level.item [ Level.Item.HasTextCentered; ] [
+      div [] [
+          Level.title [] [ str title ]
+          Level.item [] [
+              Image.image [ Image.Is128x128 ] [
+                img [ Src( sprintf "images\\%s.jpg" imagePath); ]
+              ]
+          ]
+      ]
     ]
-  ]
-
-let currentTile model =
-  childTile "Current" [
-    Image.image [ Image.Is128x128 ] [
-      img [ Src( sprintf "images\\%s.jpg" model.CurrentMonster); ]
-    ]
-  ]
 
 let root model dispatch =
 
@@ -43,24 +37,22 @@ let root model dispatch =
       Container.container [ ] [
           yield Field.div [] [
             Tag.list [ Tag.List.HasAddons; Tag.List.IsCentered; ] [
-              Tag.tag [ Tag.Color Color.IsPrimary; Tag.Size IsMedium; ] [
-                  Level.level [] [
-                    Label.label [] [ str (sprintf "High Score: %d" model.HighScore) ]
-                  ]
-              ]
               Tag.tag [ Tag.Color Color.IsInfo; Tag.Size IsMedium; ] [
                   Level.level [] [
-                    Label.label [] [ str (sprintf "Score: %d" model.Score) ]
+                    Label.label [] [ str (sprintf "score: %d" model.Score) ]
+                  ]
+              ]
+              Tag.tag [ Tag.Color Color.IsPrimary; Tag.Size IsMedium; ] [
+                  Level.level [] [
+                    Label.label [] [ str (sprintf "high score: %d" model.HighScore) ]
                   ]
               ]
             ]
           ]
 
-          yield Tile.ancestor [ Tile.Size Tile.Is12 ] [
-            Tile.parent [ Tile.Size Tile.Is12 ] [
-              targetTile model
-              currentTile model
-            ]
+          yield Level.level [ ] [
+              monsterLevel "target" model.TargetMonster
+              monsterLevel "current" model.CurrentMonster
           ]
 
           yield Progress.progress [
@@ -74,19 +66,19 @@ let root model dispatch =
               yield Button.button [
                 Button.OnClick (fun _ -> dispatch StartGame)
                 Button.Disabled (model.GameState = Playing)
-              ] [ str "Start" ]
+              ] [ str "start" ]
             ]
             Level.item[] [
               yield Button.button [
                 Button.OnClick (fun _ -> dispatch HitPressed)
                 Button.Disabled (model.GameState <> Playing)
-              ] [ str "Hit" ]
+              ] [ str "hit" ]
             ]
             Level.item[] [
               yield Button.button [
                 Button.OnClick (fun _ -> dispatch Reset)
                 Button.Disabled (model.GameState = Playing)
-              ] [ str "Reset" ]
+              ] [ str "reset" ]
             ]
           ]
 
