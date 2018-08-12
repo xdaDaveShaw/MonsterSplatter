@@ -30,8 +30,18 @@ let monsterLevel title imagePath =
       ]
     ]
 
-let root model dispatch =
+let createMainButton dispatch gameState =
+    let text, msg  =
+        if gameState = Playing then
+            "hit", HitPressed
+        else
+            "start", StartGame
 
+    Button.button [
+        Button.OnClick (fun _ -> dispatch msg)
+    ] [ str text ]
+
+let root model dispatch =
   div
     [] [
       Container.container [ ] [
@@ -50,7 +60,7 @@ let root model dispatch =
             ]
           ]
 
-          yield Level.level [ ] [
+          yield Level.level [] [
               monsterLevel "target" model.TargetMonster
               monsterLevel "current" model.CurrentMonster
           ]
@@ -63,19 +73,11 @@ let root model dispatch =
 
           yield Level.level [] [
             Level.item[] [
-              yield Button.button [
-                Button.OnClick (fun _ -> dispatch StartGame)
-                Button.Disabled (model.GameState = Playing)
-              ] [ str "start" ]
+              createMainButton dispatch model.GameState
             ]
-            Level.item[] [
-              yield Button.button [
-                Button.OnClick (fun _ -> dispatch HitPressed)
-                Button.Disabled (model.GameState <> Playing)
-              ] [ str "hit" ]
-            ]
-            Level.item[] [
-              yield Button.button [
+
+            Level.item [] [
+              Button.button [
                 Button.OnClick (fun _ -> dispatch Reset)
                 Button.Disabled (model.GameState = Playing)
               ] [ str "reset" ]
