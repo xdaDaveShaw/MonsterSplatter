@@ -19,10 +19,8 @@ open Fulma.Elements.Form
 importAll "../sass/main.sass"
 
 let childTile title content =
-  Tile.tile [] [
-      Notification.notification [ Notification.Props [ Style [ Height "100%"; Width "100%" ]; ] ]
-          (Heading.h2 [ ] [ str title ] :: content)
-  ]
+  Tile.tile [ Tile.Size Tile.Is6; Tile.IsVertical; Tile.IsChild; ]
+    (Heading.h2 [ ] [ str title ] :: content)
 
 let targetTile model =
   childTile "Target" [
