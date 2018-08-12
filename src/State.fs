@@ -33,6 +33,7 @@ let update msg model =
   let target = model.TargetMonster
 
   match model, msg with
+  //Start New Game
   | _, StartGame ->
     { model with
         GameState = Playing
@@ -44,14 +45,17 @@ let update msg model =
         Score = 0 },
     Cmd.ofPromise waitOneSecond () (fun _ -> TimerTick) Error
 
+  //Successful Hit
   | model, HitPressed when model.CurrentMonster = target && not model.HasHitBefore ->
     { model with
         Score = model.Score + 5;
         HasHitBefore = true },
     Cmd.none
 
+  // Failed Hit
   | _, HitPressed -> model, Cmd.none
 
+  //End of Game
   | { GameState = Playing; Progress = 0; }, TimerTick ->
     { model with
         GameState = Ended
@@ -59,19 +63,24 @@ let update msg model =
         HighScore = System.Math.Max(model.Score, model.HighScore) },
     Cmd.none
 
+  //Timer Ticking While Playing
   | { GameState = Playing }, TimerTick ->
     { model with
         Progress = model.Progress - 5 },
     Cmd.ofMsg (NewMonster (getNextMonster model.CurrentMonster))
 
+  //Timer when not Playing
   | _, TimerTick -> model, Cmd.none
 
+  // Request for New Monster
   | _, NewMonster s ->
     { model with
         CurrentMonster = s;
         HasHitBefore = false },
     Cmd.ofPromise waitOneSecond () (fun _ -> TimerTick) Error
 
+  //Reset the Game
   | _, Reset -> init()
 
+  //Something broke
   | _, Error _ -> init() //TODO
