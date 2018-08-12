@@ -87,7 +87,7 @@ let root model dispatch =
             Level.item[] [
               yield Button.button [
                 Button.OnClick (fun _ -> dispatch Reset)
-                Button.Disabled (model.GameState <> Playing)
+                Button.Disabled (model.GameState = Playing)
               ] [ str "Reset" ]
             ]
           ]
