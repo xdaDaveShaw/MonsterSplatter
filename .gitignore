@@ -1,5 +1,8 @@
 public/bundle.js*
 
+#Jekyll Site Folder (for Testing gh-pages)
+_site
+
 # Node
 node_modules/
 
