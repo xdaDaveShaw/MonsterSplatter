@@ -44,7 +44,7 @@ let createMainButton dispatch gameState =
 let root model dispatch =
   div
     [] [
-      Container.container [ ] [
+      yield Container.container [ ] [
           yield Field.div [] [
             Tag.list [ Tag.List.HasAddons; Tag.List.IsCentered; ] [
               Tag.tag [ Tag.Color Color.IsInfo; Tag.Size IsMedium; ] [
@@ -92,8 +92,20 @@ let root model dispatch =
                       ]
                   ]
               ]
+
+        ]
+
+      yield Footer.footer [ ] [
+        Content.content [ Content.CustomClass Fulma.BulmaClasses.Bulma.Properties.Alignment.HasTextCentered ] [
+            str "Monster Splatter - Developed by "
+            a [ Href "https://taeguk.co.uk/about" ] [ str "Dave Shaw" ]
+            p [] [
+                str "More information on "
+                a [ Href "https://github.com/xdaDaveShaw/MonsterSplatter" ] [ str "GitHub" ]
+            ]
         ]
       ]
+    ]
 
 open Elmish.React
 open Elmish.Debug
