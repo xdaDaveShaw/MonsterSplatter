@@ -1,0 +1,8 @@
+C:\Users\Dave\Source\Repos\MonsterSplatter\src\bin\Debug\netstandard2.0\MonsterSplatter.deps.json
+C:\Users\Dave\Source\Repos\MonsterSplatter\src\bin\Debug\netstandard2.0\MonsterSplatter.dll
+C:\Users\Dave\Source\Repos\MonsterSplatter\src\bin\Debug\netstandard2.0\MonsterSplatter.pdb
+C:\Users\Dave\Source\Repos\MonsterSplatter\src\obj\Debug\netstandard2.0\MonsterSplatter.fsprojAssemblyReference.cache
+C:\Users\Dave\Source\Repos\MonsterSplatter\src\obj\Debug\netstandard2.0\MonsterSplatter.AssemblyInfoInputs.cache
+C:\Users\Dave\Source\Repos\MonsterSplatter\src\obj\Debug\netstandard2.0\MonsterSplatter.AssemblyInfo.fs
+C:\Users\Dave\Source\Repos\MonsterSplatter\src\obj\Debug\netstandard2.0\MonsterSplatter.dll
+C:\Users\Dave\Source\Repos\MonsterSplatter\src\obj\Debug\netstandard2.0\MonsterSplatter.pdb

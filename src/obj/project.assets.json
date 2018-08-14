@@ -1,0 +1,753 @@
+{
+  "version": 3,
+  "targets": {
+    ".NETStandard,Version=v2.0": {
+      "Fable.Core/1.3.17": {
+        "type": "package",
+        "dependencies": {
+          "FSharp.Core": "4.2.3",
+          "NETStandard.Library": "1.6.1"
+        },
+        "compile": {
+          "lib/netstandard1.6/Fable.Core.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.6/Fable.Core.dll": {}
+        }
+      },
+      "Fable.Elmish/1.0.1": {
+        "type": "package",
+        "dependencies": {
+          "FSharp.Core": "4.2.3",
+          "Fable.Core": "1.2.4",
+          "Fable.PowerPack": "1.3.0"
+        },
+        "compile": {
+          "lib/netstandard1.6/Fable.Elmish.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.6/Fable.Elmish.dll": {}
+        }
+      },
+      "Fable.Elmish.Browser/1.0.0": {
+        "type": "package",
+        "dependencies": {
+          "FSharp.Core": "4.2.3",
+          "Fable.Core": "1.2.4",
+          "Fable.Elmish": "1.0.0",
+          "Fable.Import.Browser": "0.1.0"
+        },
+        "compile": {
+          "lib/netstandard1.6/Fable.Elmish.Browser.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.6/Fable.Elmish.Browser.dll": {}
+        }
+      },
+      "Fable.Elmish.Debugger/1.0.1": {
+        "type": "package",
+        "dependencies": {
+          "FSharp.Core": "4.2.3",
+          "Fable.Core": "1.3.1",
+          "Fable.Elmish": "1.0.0"
+        },
+        "compile": {
+          "lib/netstandard1.6/Fable.Elmish.Debugger.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.6/Fable.Elmish.Debugger.dll": {}
+        }
+      },
+      "Fable.Elmish.HMR/1.0.0": {
+        "type": "package",
+        "dependencies": {
+          "FSharp.Core": "4.2.3",
+          "Fable.Core": "1.2.4",
+          "Fable.Elmish": "0.9.2"
+        },
+        "compile": {
+          "lib/netstandard1.6/Fable.Elmish.HMR.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.6/Fable.Elmish.HMR.dll": {}
+        }
+      },
+      "Fable.Elmish.React/1.0.0": {
+        "type": "package",
+        "dependencies": {
+          "FSharp.Core": "4.2.3",
+          "Fable.Core": "1.2.4",
+          "Fable.Elmish": "1.0.0",
+          "Fable.PowerPack": "1.3.0",
+          "Fable.React": "1.2.0"
+        },
+        "compile": {
+          "lib/netstandard1.6/Fable.Elmish.React.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.6/Fable.Elmish.React.dll": {}
+        }
+      },
+      "Fable.Import.Browser/0.1.2": {
+        "type": "package",
+        "dependencies": {
+          "FSharp.Core": "4.2.3",
+          "Fable.Core": "1.1.15",
+          "NETStandard.Library": "1.6.1"
+        },
+        "compile": {
+          "lib/netstandard1.6/Fable.Import.Browser.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.6/Fable.Import.Browser.dll": {}
+        }
+      },
+      "Fable.PowerPack/1.3.1": {
+        "type": "package",
+        "dependencies": {
+          "FSharp.Core": "4.2.3",
+          "Fable.Core": "1.2.4",
+          "Fable.Import.Browser": "0.1.2"
+        },
+        "compile": {
+          "lib/netstandard1.6/Fable.PowerPack.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.6/Fable.PowerPack.dll": {}
+        }
+      },
+      "Fable.React/1.2.2": {
+        "type": "package",
+        "dependencies": {
+          "FSharp.Core": "4.2.3",
+          "Fable.Core": "1.2.4",
+          "Fable.Import.Browser": "0.1.0"
+        },
+        "compile": {
+          "lib/netstandard1.6/Fable.React.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.6/Fable.React.dll": {}
+        }
+      },
+      "FSharp.Core/4.5.1": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard1.6/FSharp.Core.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.6/FSharp.Core.dll": {}
+        },
+        "resource": {
+          "lib/netstandard1.6/cs/FSharp.Core.resources.dll": {
+            "locale": "cs"
+          },
+          "lib/netstandard1.6/de/FSharp.Core.resources.dll": {
+            "locale": "de"
+          },
+          "lib/netstandard1.6/en/FSharp.Core.resources.dll": {
+            "locale": "en"
+          },
+          "lib/netstandard1.6/es/FSharp.Core.resources.dll": {
+            "locale": "es"
+          },
+          "lib/netstandard1.6/fr/FSharp.Core.resources.dll": {
+            "locale": "fr"
+          },
+          "lib/netstandard1.6/it/FSharp.Core.resources.dll": {
+            "locale": "it"
+          },
+          "lib/netstandard1.6/ja/FSharp.Core.resources.dll": {
+            "locale": "ja"
+          },
+          "lib/netstandard1.6/ko/FSharp.Core.resources.dll": {
+            "locale": "ko"
+          },
+          "lib/netstandard1.6/pl/FSharp.Core.resources.dll": {
+            "locale": "pl"
+          },
+          "lib/netstandard1.6/pt-BR/FSharp.Core.resources.dll": {
+            "locale": "pt-BR"
+          },
+          "lib/netstandard1.6/ru/FSharp.Core.resources.dll": {
+            "locale": "ru"
+          },
+          "lib/netstandard1.6/tr/FSharp.Core.resources.dll": {
+            "locale": "tr"
+          },
+          "lib/netstandard1.6/zh-Hans/FSharp.Core.resources.dll": {
+            "locale": "zh-Hans"
+          },
+          "lib/netstandard1.6/zh-Hant/FSharp.Core.resources.dll": {
+            "locale": "zh-Hant"
+          }
+        }
+      },
+      "Fulma/1.0.0-beta-007": {
+        "type": "package",
+        "dependencies": {
+          "Fable.Core": "1.3.7",
+          "Fable.React": "1.2.2"
+        },
+        "compile": {
+          "lib/netstandard1.6/Fulma.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.6/Fulma.dll": {}
+        }
+      },
+      "Microsoft.NETCore.Platforms/1.1.0": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard1.0/_._": {}
+        },
+        "runtime": {
+          "lib/netstandard1.0/_._": {}
+        }
+      },
+      "NETStandard.Library/2.0.3": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "1.1.0"
+        },
+        "compile": {
+          "lib/netstandard1.0/_._": {}
+        },
+        "runtime": {
+          "lib/netstandard1.0/_._": {}
+        },
+        "build": {
+          "build/netstandard2.0/NETStandard.Library.targets": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Fable.Core/1.3.17": {
+      "sha512": "KhuxC94PRhOSrdAJRxRdi2angbfogPwsj7SrS9ZlwZFHtCL8R1yj4adiDcEIJ4XmtEUKJ8icjftQxeHodO6S7Q==",
+      "type": "package",
+      "path": "fable.core/1.3.17",
+      "files": [
+        "fable-core/Array.js",
+        "fable-core/Assert.js",
+        "fable-core/Async.js",
+        "fable-core/AsyncBuilder.js",
+        "fable-core/BigInt.js",
+        "fable-core/BigInt/BigNat.js",
+        "fable-core/BigInt/FFT.js",
+        "fable-core/BitConverter.js",
+        "fable-core/Char.js",
+        "fable-core/Choice.js",
+        "fable-core/Comparer.js",
+        "fable-core/CurriedLambda.js",
+        "fable-core/Date.js",
+        "fable-core/DateOffset.js",
+        "fable-core/Double.js",
+        "fable-core/Event.js",
+        "fable-core/Int32.js",
+        "fable-core/Lazy.js",
+        "fable-core/List.js",
+        "fable-core/ListClass.js",
+        "fable-core/Long.js",
+        "fable-core/MailboxProcessor.js",
+        "fable-core/Map.js",
+        "fable-core/Observable.js",
+        "fable-core/Option.js",
+        "fable-core/Reflection.js",
+        "fable-core/RegExp.js",
+        "fable-core/Result.js",
+        "fable-core/Seq.js",
+        "fable-core/Serialize.js",
+        "fable-core/Set.js",
+        "fable-core/String.js",
+        "fable-core/Symbol.js",
+        "fable-core/TimeSpan.js",
+        "fable-core/Timer.js",
+        "fable-core/Util.js",
+        "fable.core.1.3.17.nupkg.sha512",
+        "fable.core.nuspec",
+        "lib/netstandard1.6/Fable.Core.dll",
+        "lib/netstandard1.6/Fable.Core.xml",
+        "paket-installmodel.cache"
+      ]
+    },
+    "Fable.Elmish/1.0.1": {
+      "sha512": "crtbdCCg5fIoFXXTyZjpgw21oizfPnO1AOAJKZ+mLSDp6Q48uKWq0NFus6qXZuE8BWyQezYzkfTgRe6ZMPLEKg==",
+      "type": "package",
+      "path": "fable.elmish/1.0.1",
+      "files": [
+        "fable.elmish.1.0.1.nupkg.sha512",
+        "fable.elmish.nuspec",
+        "fable/Fable.Elmish.fsproj",
+        "fable/cmd.fs",
+        "fable/obj/fsac.cache",
+        "fable/program.fs",
+        "lib/netstandard1.6/Fable.Elmish.dll",
+        "lib/netstandard1.6/Fable.Elmish.xml"
+      ]
+    },
+    "Fable.Elmish.Browser/1.0.0": {
+      "sha512": "5BC6XE5F+0Kz9LQd0caB6GJpZX903nVEqeH2q8o6w8X2IdIVtn1IpqQ2UthB0Xlw9iDchsr/zbbus40Bez0BSQ==",
+      "type": "package",
+      "path": "fable.elmish.browser/1.0.0",
+      "files": [
+        "fable.elmish.browser.1.0.0.nupkg.sha512",
+        "fable.elmish.browser.nuspec",
+        "fable/Fable.Elmish.Browser.fsproj",
+        "fable/navigation.fs",
+        "fable/parser.fs",
+        "fable/prelude.fs",
+        "lib/netstandard1.6/Fable.Elmish.Browser.dll"
+      ]
+    },
+    "Fable.Elmish.Debugger/1.0.1": {
+      "sha512": "uinemTtBEefma9DXxwELgV39MqMcHkhZYGwWgxGGeB3fG1273MSQASfUHpQm+0hRjMfwraVPAr560dr8poWQzQ==",
+      "type": "package",
+      "path": "fable.elmish.debugger/1.0.1",
+      "files": [
+        "fable.elmish.debugger.1.0.1.nupkg.sha512",
+        "fable.elmish.debugger.nuspec",
+        "fable/Fable.Elmish.Debugger.fsproj",
+        "fable/Fable.Import.RemoteDev.fs",
+        "fable/debugger.fs",
+        "lib/netstandard1.6/Fable.Elmish.Debugger.dll",
+        "paket-installmodel.cache"
+      ]
+    },
+    "Fable.Elmish.HMR/1.0.0": {
+      "sha512": "0PonZgMlQAtiKsK8A6UGhdUFGCjBtYQJBqi8ZRCWQLNA19yA5yN9y5BxyggAiaTa49YFF7qrFO4xk1PzVqoSLw==",
+      "type": "package",
+      "path": "fable.elmish.hmr/1.0.0",
+      "files": [
+        "fable.elmish.hmr.1.0.0.nupkg.sha512",
+        "fable.elmish.hmr.nuspec",
+        "fable/Fable.Elmish.HMR.fsproj",
+        "fable/hmr.fs",
+        "lib/netstandard1.6/Fable.Elmish.HMR.dll",
+        "paket-installmodel.cache"
+      ]
+    },
+    "Fable.Elmish.React/1.0.0": {
+      "sha512": "Py1w1XFaEiMoPIJ9g37tWrfIPaPXNnPs5wAngGLx/3eQDQQLcPn8t3byAmZmO6ChzJ745WPybBL+/MHIS3W8iQ==",
+      "type": "package",
+      "path": "fable.elmish.react/1.0.0",
+      "files": [
+        "fable.elmish.react.1.0.0.nupkg.sha512",
+        "fable.elmish.react.nuspec",
+        "fable/Fable.Elmish.React.fsproj",
+        "fable/common.fs",
+        "fable/react-native.fs",
+        "fable/react.fs",
+        "lib/netstandard1.6/Fable.Elmish.React.dll"
+      ]
+    },
+    "Fable.Import.Browser/0.1.2": {
+      "sha512": "ZsY6LDds8RpRehbfj7PPkzC+hVwOkTPzDiyp7XXrgxK1OYLel5c8ruhFJWqciRXtu82ug5i8SbcBBkVn5tBR0w==",
+      "type": "package",
+      "path": "fable.import.browser/0.1.2",
+      "files": [
+        "fable.import.browser.0.1.2.nupkg.sha512",
+        "fable.import.browser.nuspec",
+        "lib/netstandard1.6/Fable.Import.Browser.dll"
+      ]
+    },
+    "Fable.PowerPack/1.3.1": {
+      "sha512": "AjRxUxAqGW24xam7CcfAiX3RzWkX3Q0a3mRCtlY+RZc22Jykvt2L2N0xuG9GrnLb+bIfsCmokphbEczNF5cjaA==",
+      "type": "package",
+      "path": "fable.powerpack/1.3.1",
+      "files": [
+        "fable.powerpack.1.3.1.nupkg.sha512",
+        "fable.powerpack.nuspec",
+        "fable/Fable.PowerPack.fsproj",
+        "fable/src/Date/Format.fs",
+        "fable/src/Date/Local.fs",
+        "fable/src/Fetch.fs",
+        "fable/src/IndexedDB.fs",
+        "fable/src/Json.fs",
+        "fable/src/Json.js",
+        "fable/src/Keyboard.fs",
+        "fable/src/Promise.fs",
+        "fable/src/PromiseSeq/Extensions.fs",
+        "fable/src/PromiseSeq/Module.fs",
+        "fable/src/PromiseSeq/Type.fs",
+        "fable/src/Result.fs",
+        "lib/netstandard1.6/Fable.PowerPack.dll",
+        "lib/netstandard1.6/Fable.PowerPack.xml"
+      ]
+    },
+    "Fable.React/1.2.2": {
+      "sha512": "1byQ2cYMBSiPyu8j40+37gC53I1rDxQynWGuTlLRKKE6XqxZzB/xlGsnNvOPTJDtVvGvM0SPyZR4d126p5HzPw==",
+      "type": "package",
+      "path": "fable.react/1.2.2",
+      "files": [
+        "fable.react.1.2.2.nupkg.sha512",
+        "fable.react.nuspec",
+        "fable/Fable.Helpers.React.fs",
+        "fable/Fable.Import.React.fs",
+        "fable/Fable.React.fsproj",
+        "lib/netstandard1.6/Fable.React.dll"
+      ]
+    },
+    "FSharp.Core/4.5.1": {
+      "sha512": "3Vv/IVtYfjTWUSEA/HcAT8VN27rmTJGrf7SL2tjXssUkXSxxg92erHvqIFoLkGIWwmFodvqwkDjZsfdY4SrD7Q==",
+      "type": "package",
+      "path": "fsharp.core/4.5.1",
+      "files": [
+        ".signature.p7s",
+        "fsharp.core.4.5.1.nupkg.sha512",
+        "fsharp.core.nuspec",
+        "lib/net45/FSharp.Core.dll",
+        "lib/net45/FSharp.Core.optdata",
+        "lib/net45/FSharp.Core.resources.dll",
+        "lib/net45/FSharp.Core.sigdata",
+        "lib/net45/FSharp.Core.xml",
+        "lib/net45/cs/FSharp.Core.resources.dll",
+        "lib/net45/de/FSharp.Core.resources.dll",
+        "lib/net45/en/FSharp.Core.resources.dll",
+        "lib/net45/es/FSharp.Core.resources.dll",
+        "lib/net45/fr/FSharp.Core.resources.dll",
+        "lib/net45/it/FSharp.Core.resources.dll",
+        "lib/net45/ja/FSharp.Core.resources.dll",
+        "lib/net45/ko/FSharp.Core.resources.dll",
+        "lib/net45/pl/FSharp.Core.resources.dll",
+        "lib/net45/pt-BR/FSharp.Core.resources.dll",
+        "lib/net45/ru/FSharp.Core.resources.dll",
+        "lib/net45/tr/FSharp.Core.resources.dll",
+        "lib/net45/zh-Hans/FSharp.Core.resources.dll",
+        "lib/net45/zh-Hant/FSharp.Core.resources.dll",
+        "lib/netstandard1.6/FSharp.Core.dll",
+        "lib/netstandard1.6/FSharp.Core.optdata",
+        "lib/netstandard1.6/FSharp.Core.sigdata",
+        "lib/netstandard1.6/FSharp.Core.xml",
+        "lib/netstandard1.6/cs/FSharp.Core.resources.dll",
+        "lib/netstandard1.6/de/FSharp.Core.resources.dll",
+        "lib/netstandard1.6/en/FSharp.Core.resources.dll",
+        "lib/netstandard1.6/es/FSharp.Core.resources.dll",
+        "lib/netstandard1.6/fr/FSharp.Core.resources.dll",
+        "lib/netstandard1.6/it/FSharp.Core.resources.dll",
+        "lib/netstandard1.6/ja/FSharp.Core.resources.dll",
+        "lib/netstandard1.6/ko/FSharp.Core.resources.dll",
+        "lib/netstandard1.6/pl/FSharp.Core.resources.dll",
+        "lib/netstandard1.6/pt-BR/FSharp.Core.resources.dll",
+        "lib/netstandard1.6/ru/FSharp.Core.resources.dll",
+        "lib/netstandard1.6/tr/FSharp.Core.resources.dll",
+        "lib/netstandard1.6/zh-Hans/FSharp.Core.resources.dll",
+        "lib/netstandard1.6/zh-Hant/FSharp.Core.resources.dll",
+        "paket-installmodel.cache"
+      ]
+    },
+    "Fulma/1.0.0-beta-007": {
+      "sha512": "X/CQWwBzY/1uC2Y9DOdl1+Z/PJoWZaKoPVtRB/fZb0oUASAf3TyGaAy5/bzwj+XK241sOCQRom/rsJuURQb4Sg==",
+      "type": "package",
+      "path": "fulma/1.0.0-beta-007",
+      "files": [
+        "fable/BulmaClasses.fs",
+        "fable/Common.fs",
+        "fable/Components/Breadcrumb.fs",
+        "fable/Components/Card.fs",
+        "fable/Components/Dropdown.fs",
+        "fable/Components/Media.fs",
+        "fable/Components/Menu.fs",
+        "fable/Components/Message.fs",
+        "fable/Components/Modal.fs",
+        "fable/Components/Navbar.fs",
+        "fable/Components/Pagination.fs",
+        "fable/Components/Panel.fs",
+        "fable/Components/Tabs.fs",
+        "fable/Elements/Box.fs",
+        "fable/Elements/Button.fs",
+        "fable/Elements/Content.fs",
+        "fable/Elements/Delete.fs",
+        "fable/Elements/Form/Checkbox.fs",
+        "fable/Elements/Form/Control.fs",
+        "fable/Elements/Form/Field.fs",
+        "fable/Elements/Form/File.fs",
+        "fable/Elements/Form/Help.fs",
+        "fable/Elements/Form/Input.fs",
+        "fable/Elements/Form/Label.fs",
+        "fable/Elements/Form/Radio.fs",
+        "fable/Elements/Form/Select.fs",
+        "fable/Elements/Form/Textarea.fs",
+        "fable/Elements/Heading.fs",
+        "fable/Elements/Icon.fs",
+        "fable/Elements/Image.fs",
+        "fable/Elements/Notification.fs",
+        "fable/Elements/Progress.fs",
+        "fable/Elements/Table.fs",
+        "fable/Elements/Tag.fs",
+        "fable/Extra/FontAwesome.fs",
+        "fable/Fulma.fsproj",
+        "fable/Layouts/Column.fs",
+        "fable/Layouts/Columns.fs",
+        "fable/Layouts/Container.fs",
+        "fable/Layouts/Footer.fs",
+        "fable/Layouts/Hero.fs",
+        "fable/Layouts/Level.fs",
+        "fable/Layouts/Section.fs",
+        "fable/Layouts/Tile.fs",
+        "fulma.1.0.0-beta-007.nupkg.sha512",
+        "fulma.nuspec",
+        "lib/netstandard1.6/Fulma.dll",
+        "lib/netstandard1.6/Fulma.xml",
+        "paket-installmodel.cache"
+      ]
+    },
+    "Microsoft.NETCore.Platforms/1.1.0": {
+      "sha512": "pXEoUX9AOBn+7wuqTG2sURo+Uc1h3hmH0VVJdsCpExviCKzNjrVkxw7ISGnDwfUUrtKVJL7Sf+mcsTXMghl2uQ==",
+      "type": "package",
+      "path": "microsoft.netcore.platforms/1.1.0",
+      "files": [
+        "ThirdPartyNotices.txt",
+        "dotnet_library_license.txt",
+        "lib/netstandard1.0/_._",
+        "microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+        "microsoft.netcore.platforms.nuspec",
+        "runtime.json"
+      ]
+    },
+    "NETStandard.Library/2.0.3": {
+      "sha512": "9P4Q182HM07bxSM00ZHmx2PhHq9nn57W1/HnKPxluvKNqPXCCLaEYsIvMKRUw69NvLBuVX7lCvC1WbtXGkL4FQ==",
+      "type": "package",
+      "path": "netstandard.library/2.0.3",
+      "files": [
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "build/netstandard2.0/NETStandard.Library.targets",
+        "build/netstandard2.0/ref/Microsoft.Win32.Primitives.dll",
+        "build/netstandard2.0/ref/System.AppContext.dll",
+        "build/netstandard2.0/ref/System.Collections.Concurrent.dll",
+        "build/netstandard2.0/ref/System.Collections.NonGeneric.dll",
+        "build/netstandard2.0/ref/System.Collections.Specialized.dll",
+        "build/netstandard2.0/ref/System.Collections.dll",
+        "build/netstandard2.0/ref/System.ComponentModel.Composition.dll",
+        "build/netstandard2.0/ref/System.ComponentModel.EventBasedAsync.dll",
+        "build/netstandard2.0/ref/System.ComponentModel.Primitives.dll",
+        "build/netstandard2.0/ref/System.ComponentModel.TypeConverter.dll",
+        "build/netstandard2.0/ref/System.ComponentModel.dll",
+        "build/netstandard2.0/ref/System.Console.dll",
+        "build/netstandard2.0/ref/System.Core.dll",
+        "build/netstandard2.0/ref/System.Data.Common.dll",
+        "build/netstandard2.0/ref/System.Data.dll",
+        "build/netstandard2.0/ref/System.Diagnostics.Contracts.dll",
+        "build/netstandard2.0/ref/System.Diagnostics.Debug.dll",
+        "build/netstandard2.0/ref/System.Diagnostics.FileVersionInfo.dll",
+        "build/netstandard2.0/ref/System.Diagnostics.Process.dll",
+        "build/netstandard2.0/ref/System.Diagnostics.StackTrace.dll",
+        "build/netstandard2.0/ref/System.Diagnostics.TextWriterTraceListener.dll",
+        "build/netstandard2.0/ref/System.Diagnostics.Tools.dll",
+        "build/netstandard2.0/ref/System.Diagnostics.TraceSource.dll",
+        "build/netstandard2.0/ref/System.Diagnostics.Tracing.dll",
+        "build/netstandard2.0/ref/System.Drawing.Primitives.dll",
+        "build/netstandard2.0/ref/System.Drawing.dll",
+        "build/netstandard2.0/ref/System.Dynamic.Runtime.dll",
+        "build/netstandard2.0/ref/System.Globalization.Calendars.dll",
+        "build/netstandard2.0/ref/System.Globalization.Extensions.dll",
+        "build/netstandard2.0/ref/System.Globalization.dll",
+        "build/netstandard2.0/ref/System.IO.Compression.FileSystem.dll",
+        "build/netstandard2.0/ref/System.IO.Compression.ZipFile.dll",
+        "build/netstandard2.0/ref/System.IO.Compression.dll",
+        "build/netstandard2.0/ref/System.IO.FileSystem.DriveInfo.dll",
+        "build/netstandard2.0/ref/System.IO.FileSystem.Primitives.dll",
+        "build/netstandard2.0/ref/System.IO.FileSystem.Watcher.dll",
+        "build/netstandard2.0/ref/System.IO.FileSystem.dll",
+        "build/netstandard2.0/ref/System.IO.IsolatedStorage.dll",
+        "build/netstandard2.0/ref/System.IO.MemoryMappedFiles.dll",
+        "build/netstandard2.0/ref/System.IO.Pipes.dll",
+        "build/netstandard2.0/ref/System.IO.UnmanagedMemoryStream.dll",
+        "build/netstandard2.0/ref/System.IO.dll",
+        "build/netstandard2.0/ref/System.Linq.Expressions.dll",
+        "build/netstandard2.0/ref/System.Linq.Parallel.dll",
+        "build/netstandard2.0/ref/System.Linq.Queryable.dll",
+        "build/netstandard2.0/ref/System.Linq.dll",
+        "build/netstandard2.0/ref/System.Net.Http.dll",
+        "build/netstandard2.0/ref/System.Net.NameResolution.dll",
+        "build/netstandard2.0/ref/System.Net.NetworkInformation.dll",
+        "build/netstandard2.0/ref/System.Net.Ping.dll",
+        "build/netstandard2.0/ref/System.Net.Primitives.dll",
+        "build/netstandard2.0/ref/System.Net.Requests.dll",
+        "build/netstandard2.0/ref/System.Net.Security.dll",
+        "build/netstandard2.0/ref/System.Net.Sockets.dll",
+        "build/netstandard2.0/ref/System.Net.WebHeaderCollection.dll",
+        "build/netstandard2.0/ref/System.Net.WebSockets.Client.dll",
+        "build/netstandard2.0/ref/System.Net.WebSockets.dll",
+        "build/netstandard2.0/ref/System.Net.dll",
+        "build/netstandard2.0/ref/System.Numerics.dll",
+        "build/netstandard2.0/ref/System.ObjectModel.dll",
+        "build/netstandard2.0/ref/System.Reflection.Extensions.dll",
+        "build/netstandard2.0/ref/System.Reflection.Primitives.dll",
+        "build/netstandard2.0/ref/System.Reflection.dll",
+        "build/netstandard2.0/ref/System.Resources.Reader.dll",
+        "build/netstandard2.0/ref/System.Resources.ResourceManager.dll",
+        "build/netstandard2.0/ref/System.Resources.Writer.dll",
+        "build/netstandard2.0/ref/System.Runtime.CompilerServices.VisualC.dll",
+        "build/netstandard2.0/ref/System.Runtime.Extensions.dll",
+        "build/netstandard2.0/ref/System.Runtime.Handles.dll",
+        "build/netstandard2.0/ref/System.Runtime.InteropServices.RuntimeInformation.dll",
+        "build/netstandard2.0/ref/System.Runtime.InteropServices.dll",
+        "build/netstandard2.0/ref/System.Runtime.Numerics.dll",
+        "build/netstandard2.0/ref/System.Runtime.Serialization.Formatters.dll",
+        "build/netstandard2.0/ref/System.Runtime.Serialization.Json.dll",
+        "build/netstandard2.0/ref/System.Runtime.Serialization.Primitives.dll",
+        "build/netstandard2.0/ref/System.Runtime.Serialization.Xml.dll",
+        "build/netstandard2.0/ref/System.Runtime.Serialization.dll",
+        "build/netstandard2.0/ref/System.Runtime.dll",
+        "build/netstandard2.0/ref/System.Security.Claims.dll",
+        "build/netstandard2.0/ref/System.Security.Cryptography.Algorithms.dll",
+        "build/netstandard2.0/ref/System.Security.Cryptography.Csp.dll",
+        "build/netstandard2.0/ref/System.Security.Cryptography.Encoding.dll",
+        "build/netstandard2.0/ref/System.Security.Cryptography.Primitives.dll",
+        "build/netstandard2.0/ref/System.Security.Cryptography.X509Certificates.dll",
+        "build/netstandard2.0/ref/System.Security.Principal.dll",
+        "build/netstandard2.0/ref/System.Security.SecureString.dll",
+        "build/netstandard2.0/ref/System.ServiceModel.Web.dll",
+        "build/netstandard2.0/ref/System.Text.Encoding.Extensions.dll",
+        "build/netstandard2.0/ref/System.Text.Encoding.dll",
+        "build/netstandard2.0/ref/System.Text.RegularExpressions.dll",
+        "build/netstandard2.0/ref/System.Threading.Overlapped.dll",
+        "build/netstandard2.0/ref/System.Threading.Tasks.Parallel.dll",
+        "build/netstandard2.0/ref/System.Threading.Tasks.dll",
+        "build/netstandard2.0/ref/System.Threading.Thread.dll",
+        "build/netstandard2.0/ref/System.Threading.ThreadPool.dll",
+        "build/netstandard2.0/ref/System.Threading.Timer.dll",
+        "build/netstandard2.0/ref/System.Threading.dll",
+        "build/netstandard2.0/ref/System.Transactions.dll",
+        "build/netstandard2.0/ref/System.ValueTuple.dll",
+        "build/netstandard2.0/ref/System.Web.dll",
+        "build/netstandard2.0/ref/System.Windows.dll",
+        "build/netstandard2.0/ref/System.Xml.Linq.dll",
+        "build/netstandard2.0/ref/System.Xml.ReaderWriter.dll",
+        "build/netstandard2.0/ref/System.Xml.Serialization.dll",
+        "build/netstandard2.0/ref/System.Xml.XDocument.dll",
+        "build/netstandard2.0/ref/System.Xml.XPath.XDocument.dll",
+        "build/netstandard2.0/ref/System.Xml.XPath.dll",
+        "build/netstandard2.0/ref/System.Xml.XmlDocument.dll",
+        "build/netstandard2.0/ref/System.Xml.XmlSerializer.dll",
+        "build/netstandard2.0/ref/System.Xml.dll",
+        "build/netstandard2.0/ref/System.dll",
+        "build/netstandard2.0/ref/mscorlib.dll",
+        "build/netstandard2.0/ref/netstandard.dll",
+        "build/netstandard2.0/ref/netstandard.xml",
+        "lib/netstandard1.0/_._",
+        "netstandard.library.2.0.3.nupkg.sha512",
+        "netstandard.library.nuspec",
+        "paket-installmodel.cache"
+      ]
+    }
+  },
+  "projectFileDependencyGroups": {
+    ".NETStandard,Version=v2.0": [
+      "FSharp.Core >= 4.5.1",
+      "Fable.Core >= 1.3.17",
+      "Fable.Elmish >= 1.0.1",
+      "Fable.Elmish.Browser >= 1.0.0",
+      "Fable.Elmish.Debugger >= 1.0.1",
+      "Fable.Elmish.HMR >= 1.0.0",
+      "Fable.Elmish.React >= 1.0.0",
+      "Fable.Import.Browser >= 0.1.2",
+      "Fable.PowerPack >= 1.3.1",
+      "Fable.React >= 1.2.2",
+      "Fulma >= 1.0.0-beta-007",
+      "NETStandard.Library >= 2.0.3"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\Dave\\.nuget\\packages\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "C:\\Users\\Dave\\Source\\Repos\\MonsterSplatter\\src\\MonsterSplatter.fsproj",
+      "projectName": "MonsterSplatter",
+      "projectPath": "C:\\Users\\Dave\\Source\\Repos\\MonsterSplatter\\src\\MonsterSplatter.fsproj",
+      "packagesPath": "C:\\Users\\Dave\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Dave\\Source\\Repos\\MonsterSplatter\\src\\obj\\",
+      "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      ],
+      "configFilePaths": [
+        "C:\\Users\\Dave\\Source\\Repos\\MonsterSplatter\\NuGet.Config",
+        "C:\\Users\\Dave\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "netstandard2.0"
+      ],
+      "sources": {
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "netstandard2.0": {
+          "projectReferences": {}
+        }
+      },
+      "warningProperties": {
+        "noWarn": [
+          "NU1603"
+        ]
+      }
+    },
+    "frameworks": {
+      "netstandard2.0": {
+        "dependencies": {
+          "FSharp.Core": {
+            "target": "Package",
+            "version": "[4.5.1, )"
+          },
+          "Fable.Core": {
+            "target": "Package",
+            "version": "[1.3.17, )"
+          },
+          "Fable.Elmish": {
+            "target": "Package",
+            "version": "[1.0.1, )"
+          },
+          "Fable.Elmish.Browser": {
+            "target": "Package",
+            "version": "[1.0.0, )"
+          },
+          "Fable.Elmish.Debugger": {
+            "target": "Package",
+            "version": "[1.0.1, )"
+          },
+          "Fable.Elmish.HMR": {
+            "target": "Package",
+            "version": "[1.0.0, )"
+          },
+          "Fable.Elmish.React": {
+            "target": "Package",
+            "version": "[1.0.0, )"
+          },
+          "Fable.Import.Browser": {
+            "target": "Package",
+            "version": "[0.1.2, )"
+          },
+          "Fable.PowerPack": {
+            "target": "Package",
+            "version": "[1.3.1, )"
+          },
+          "Fable.React": {
+            "target": "Package",
+            "version": "[1.2.2, )"
+          },
+          "Fulma": {
+            "target": "Package",
+            "version": "[1.0.0-beta-007, )"
+          },
+          "NETStandard.Library": {
+            "suppressParent": "All",
+            "target": "Package",
+            "version": "[2.0.3, )",
+            "autoReferenced": true
+          }
+        },
+        "imports": [
+          "net461"
+        ],
+        "assetTargetFallback": true,
+        "warn": true
+      }
+    }
+  }
+}

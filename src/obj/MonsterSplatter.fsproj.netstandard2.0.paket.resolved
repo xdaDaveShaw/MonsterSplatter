@@ -1,0 +1,11 @@
+FSharp.Core,4.5.1,Direct,Main,false
+Fable.Core,1.3.17,Transitive,Main,false
+Fable.Import.Browser,0.1.2,Transitive,Main,false
+Fable.PowerPack,1.3.1,Transitive,Main,false
+Fable.Elmish,1.0.1,Transitive,Main,false
+Fable.Elmish.Browser,1.0,Direct,Main,false
+Fable.Elmish.Debugger,1.0.1,Direct,Main,false
+Fable.Elmish.HMR,1.0,Direct,Main,false
+Fable.React,1.2.2,Transitive,Main,false
+Fable.Elmish.React,1.0,Direct,Main,false
+Fulma,1.0.0-beta-007,Direct,Main,false
