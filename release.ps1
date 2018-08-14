@@ -10,7 +10,7 @@ Set-Location ..
 
 Copy-Item .\public\ -Filter *.* -Destination .\release\ -Recurse
 
-git checkout gh-play
+git checkout gh-pages
 
 Get-ChildItem .\release | Copy-Item -Destination . -Recurse
 
