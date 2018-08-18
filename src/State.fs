@@ -12,7 +12,8 @@ let init () =
     HasHitBefore = false
     Progress = 100
     NewHighScore = false
-    HighScore = 0 }, Cmd.none
+    HighScore = 0
+    ShowInfo = true }, Cmd.none
 
 let random = new System.Random()
 
@@ -81,6 +82,9 @@ let update msg model =
 
   //Reset the Game
   | _, Reset -> init()
+
+  //Hide the infomation notifiation.
+  | _, HideInfo -> { model with ShowInfo = false }, Cmd.none
 
   //Something broke
   | _, Error _ -> init() //TODO

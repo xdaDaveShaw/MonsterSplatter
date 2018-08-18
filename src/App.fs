@@ -18,6 +18,11 @@ open Fulma.Elements.Form
 
 importAll "../sass/main.sass"
 
+[<Literal>]
+let instructions = @"Press 'start' to begin a game.
+Press 'hit' (or use Space Bar) when the two mosters match to gain 5 points.
+Match as many as you can in the time to earn a high score."
+
 let monsterLevel title imagePath =
     Level.item [ Level.Item.HasTextCentered; ] [
       div [] [
@@ -59,6 +64,16 @@ let root model dispatch =
               ]
             ]
           ]
+
+          if (model.ShowInfo) then
+            yield Notification.notification [ Notification.Color IsInfo ] [
+              Notification.delete [
+                GenericOption.Props [ OnClick (fun _ -> dispatch HideInfo) ]
+              ] []
+              strong [] [str "Monster Splatter" ]
+              p [] [ str "Monster Splatter is a simple picture matching game." ]
+              p [] [ str instructions ]
+            ]
 
           yield Level.level [] [
               monsterLevel "target" model.TargetMonster

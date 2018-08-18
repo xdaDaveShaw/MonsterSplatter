@@ -8,6 +8,7 @@ type Msg =
   | NewMonster of string
   | HitPressed
   | Reset
+  | HideInfo
   | Error of Exception
 
 type State =
@@ -24,4 +25,5 @@ type Model = {
     Progress: int
     NewHighScore: bool
     HighScore: int
+    ShowInfo: bool
   }
