@@ -38,6 +38,7 @@ module.exports = {
         hot: true,
         inline: true
     },
+    mode: isProduction ? "production" : "development",
     module: {
         rules: [
             {
