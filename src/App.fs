@@ -11,10 +11,6 @@ open Fable.Helpers.React
 open Fable.Helpers.React.Props
 
 open Fulma
-open Fulma.Layouts
-open Fulma.Elements
-open Fulma.Elements.Form
-
 
 importAll "../sass/main.sass"
 
@@ -111,7 +107,7 @@ let root model dispatch =
         ]
 
       yield Footer.footer [ ] [
-        Content.content [ Content.CustomClass Fulma.BulmaClasses.Bulma.Properties.Alignment.HasTextCentered ] [
+        Content.content [ Content.CustomClass Fulma.TextAlignment.Classes.HasTextCentered ] [
             str "Monster Splatter - Developed by "
             a [ Href "https://taeguk.co.uk/about" ] [ str "Dave Shaw" ]
             p [] [
