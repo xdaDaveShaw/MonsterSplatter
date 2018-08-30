@@ -1,4 +1,4 @@
-dotnet build
+dotnet restore
 
 yarn install
 
