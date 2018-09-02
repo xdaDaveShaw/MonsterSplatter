@@ -7,10 +7,7 @@ open Types
 
 let maxLives = 5
 
-let init () =
-
-  let pModel = defaultArg (loadFromStorage()) defaultPersistedModel
-
+let createDefaultModel (pModel : PersistedModel) =
   { TargetMonster = "ready"
     CurrentMonster = "ready"
     Score = 0
@@ -21,7 +18,13 @@ let init () =
     HighScore = pModel.HighScore
     Lives = maxLives, maxLives
     ShowInfo = pModel.ShowInfo }
-  , Cmd.none
+
+let init () =
+  let model =
+    defaultArg (loadFromStorage()) defaultPersistedModel
+    |> createDefaultModel
+
+  model, Cmd.none
 
 let random = new System.Random()
 
@@ -93,7 +96,7 @@ let update msg model =
   | { GameState = Playing }, TimerTick ->
     { model with
         Progress = model.Progress - 5 },
-    Cmd.ofMsg (NewMonster (getNextMonster model.CurrentMonster))
+    getNextMonster model.CurrentMonster |> NewMonster |> Cmd.ofMsg
 
   //Timer when not Playing
   | _, TimerTick -> model, Cmd.none
@@ -106,7 +109,9 @@ let update msg model =
     Cmd.ofPromise waitOneSecond () (fun _ -> TimerTick) Error
 
   //Reset the Game
-  | _, Reset -> init()
+  | _, Reset ->
+    clearStorage()
+    init()
 
   //Hide the infomation notifiation.
   | _, HideInfo ->

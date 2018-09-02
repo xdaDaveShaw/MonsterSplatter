@@ -13,12 +13,17 @@ let defaultPersistedModel =
   { PersistedModel.ShowInfo = true;
     HighScore = 0; }
 
+let key = "monsterSplatter"
+
 let loadFromStorage () : PersistedModel option =
-    !!Browser.localStorage.getItem("monsterSplatter")
+    !!Browser.localStorage.getItem(key)
     |> Option.map (fun json -> !!JS.JSON.parse(json))
 
 let saveToStorage pModel =
-    Browser.localStorage.setItem("monsterSplatter", JS.JSON.stringify pModel)
+    Browser.localStorage.setItem(key, JS.JSON.stringify pModel)
+
+let clearStorage () =
+    Browser.localStorage.removeItem key
 
 let mapToPModel (model: Model) =
     { ShowInfo = model.ShowInfo
