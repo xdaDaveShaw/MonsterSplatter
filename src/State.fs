@@ -18,7 +18,7 @@ let init () =
     HasHitBefore = false
     Progress = 100
     NewHighScore = false
-    HighScore = 0
+    HighScore = pModel.HighScore
     Lives = maxLives, maxLives
     ShowInfo = pModel.ShowInfo }
   , Cmd.none
@@ -87,7 +87,7 @@ let update msg model =
         GameState = Ended Natural
         NewHighScore = model.Score > model.HighScore
         HighScore = System.Math.Max(model.Score, model.HighScore) },
-    Cmd.none
+    Cmd.ofMsg PersistState
 
   //Timer Ticking While Playing
   | { GameState = Playing }, TimerTick ->

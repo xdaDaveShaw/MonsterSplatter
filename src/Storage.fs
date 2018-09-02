@@ -6,10 +6,12 @@ open Types
 
 type PersistedModel = {
     ShowInfo: bool
+    HighScore: int
 }
 
 let defaultPersistedModel =
-  { PersistedModel.ShowInfo = true; }
+  { PersistedModel.ShowInfo = true;
+    HighScore = 0; }
 
 let loadFromStorage () : PersistedModel option =
     !!Browser.localStorage.getItem("monsterSplatter")
@@ -19,4 +21,5 @@ let saveToStorage pModel =
     Browser.localStorage.setItem("monsterSplatter", JS.JSON.stringify pModel)
 
 let mapToPModel (model: Model) =
-    { ShowInfo = model.ShowInfo }
+    { ShowInfo = model.ShowInfo
+      HighScore = model.HighScore }
