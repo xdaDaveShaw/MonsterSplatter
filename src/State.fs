@@ -2,11 +2,12 @@ module App.State
 
 open Elmish
 open Fable.PowerPack
+open Storage
 open Types
 
 let maxLives = 5
 
-let init () =
+let createDefaultModel (pModel : PersistedModel) =
   { TargetMonster = "ready"
     CurrentMonster = "ready"
     Score = 0
@@ -14,9 +15,16 @@ let init () =
     HasHitBefore = false
     Progress = 100
     NewHighScore = false
-    HighScore = 0
+    HighScore = pModel.HighScore
     Lives = maxLives, maxLives
-    ShowInfo = true }, Cmd.none
+    ShowInfo = pModel.ShowInfo }
+
+let init () =
+  let model =
+    defaultArg (loadFromStorage()) defaultPersistedModel
+    |> createDefaultModel
+
+  model, Cmd.none
 
 let random = new System.Random()
 
@@ -82,13 +90,13 @@ let update msg model =
         GameState = Ended Natural
         NewHighScore = model.Score > model.HighScore
         HighScore = System.Math.Max(model.Score, model.HighScore) },
-    Cmd.none
+    Cmd.ofMsg PersistState
 
   //Timer Ticking While Playing
   | { GameState = Playing }, TimerTick ->
     { model with
         Progress = model.Progress - 5 },
-    Cmd.ofMsg (NewMonster (getNextMonster model.CurrentMonster))
+    getNextMonster model.CurrentMonster |> NewMonster |> Cmd.ofMsg
 
   //Timer when not Playing
   | _, TimerTick -> model, Cmd.none
@@ -101,10 +109,18 @@ let update msg model =
     Cmd.ofPromise waitOneSecond () (fun _ -> TimerTick) Error
 
   //Reset the Game
-  | _, Reset -> init()
+  | _, Reset ->
+    clearStorage()
+    init()
 
   //Hide the infomation notifiation.
-  | _, HideInfo -> { model with ShowInfo = false }, Cmd.none
+  | _, HideInfo ->
+    { model with ShowInfo = false },
+    Cmd.ofMsg PersistState
+
+  | _, PersistState ->
+    saveToStorage (mapToPModel model)
+    model, Cmd.none
 
   //Something broke
   | _, Error _ -> init() //TODO

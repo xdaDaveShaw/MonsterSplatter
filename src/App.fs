@@ -39,7 +39,8 @@ let createMainButton dispatch gameState =
             "start", StartGame
 
     Button.button [
-        Button.OnClick (fun _ -> dispatch msg)
+      Button.Color IsSuccess
+      Button.OnClick (fun _ -> dispatch msg)
     ] [ str text ]
 
 
@@ -101,9 +102,14 @@ let root model dispatch =
 
             Level.item [] [
               Button.button [
+                Button.Color IsDanger
                 Button.OnClick (fun _ -> dispatch Reset)
                 Button.Disabled (model.GameState = Playing)
-              ] [ str "reset" ]
+                Button.Props [ Title "reset EVERYTHING back to the initial state" ]
+              ] [
+                  span [] [ str "reset " ]
+                  FontAwesome.Icon.faIcon [] [ FontAwesome.Fa.icon FontAwesome.Fa.I.Times ]
+              ]
             ]
           ]
 
