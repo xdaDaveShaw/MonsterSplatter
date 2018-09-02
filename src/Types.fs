@@ -11,10 +11,14 @@ type Msg =
   | HideInfo
   | Error of Exception
 
+type GameEnd =
+  | Natural
+  | Died
+
 type State =
   | NotStarted
   | Playing
-  | Ended
+  | Ended of GameEnd
 
 type Model = {
     TargetMonster: string
@@ -26,4 +30,5 @@ type Model = {
     NewHighScore: bool
     HighScore: int
     ShowInfo: bool
+    Lives: int * int
   }
