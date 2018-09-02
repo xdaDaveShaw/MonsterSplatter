@@ -42,6 +42,12 @@ let createMainButton dispatch gameState =
         Button.OnClick (fun _ -> dispatch msg)
     ] [ str text ]
 
+
+let createsLivesLabel (remaining, total) =
+    let dead = String.replicate (total - remaining) "🖤"
+    let remain = String.replicate remaining "💗"
+    str (dead + remain)
+
 let root model dispatch =
   div
     [] [
@@ -56,6 +62,12 @@ let root model dispatch =
               Tag.tag [ Tag.Color Color.IsPrimary; Tag.Size IsMedium; ] [
                   Level.level [] [
                     Label.label [] [ str (sprintf "high score: %d" model.HighScore) ]
+                  ]
+              ]
+
+              Tag.tag [ Tag.Color Color.IsWarning; Tag.Size IsMedium; ] [
+                  Level.level [] [
+                      Label.label [] [ createsLivesLabel model.Lives ]
                   ]
               ]
             ]
@@ -96,14 +108,25 @@ let root model dispatch =
           ]
 
           if (model.NewHighScore) then
-              yield Field.div [ Field.HasAddonsCentered ] [
-                  Notification.notification [ Notification.Color IsDanger ] [
-                      Heading.h2 [] [
-                        str (sprintf "New High Score %d !!!" model.HighScore)
-                      ]
-                  ]
-              ]
+            yield Field.div [ Field.HasAddonsCentered ] [
+                Notification.notification [ Notification.Color IsDanger ] [
+                    Heading.h2 [] [
+                      str (sprintf "new high score %d !!!" model.HighScore)
+                    ]
+                ]
+            ]
 
+          if (model.GameState = Ended Died) then
+            yield Field.div [ Field.HasAddonsCentered ] [
+                Notification.notification [ Notification.Color IsDanger ] [
+                    Heading.h2 [] [
+                      str "game over!"
+                    ]
+                    Text.p [ Modifiers [ Modifier.TextAlignment (Screen.All, TextAlignment.Centered) ] ] [
+                        str "click start to try again"
+                    ]
+                ]
+            ]
         ]
 
       yield Footer.footer [ ] [

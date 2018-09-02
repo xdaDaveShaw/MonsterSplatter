@@ -4,6 +4,8 @@ open Elmish
 open Fable.PowerPack
 open Types
 
+let maxLives = 5
+
 let init () =
   { TargetMonster = "ready"
     CurrentMonster = "ready"
@@ -13,6 +15,7 @@ let init () =
     Progress = 100
     NewHighScore = false
     HighScore = 0
+    Lives = maxLives, maxLives
     ShowInfo = true }, Cmd.none
 
 let random = new System.Random()
@@ -30,6 +33,9 @@ let waitOneSecondImp =
   }
 let waitOneSecond _ = waitOneSecondImp
 
+let removeLife (remaining, total) =
+    remaining - 1, total
+
 let update msg model =
   let target = model.TargetMonster
 
@@ -40,26 +46,40 @@ let update msg model =
         GameState = Playing
         Progress = 100
         TargetMonster = (getNextMonster target)
-        CurrentMonster = "ready"
+        CurrentMonster = (getNextMonster target)
         NewHighScore = false
         HasHitBefore = false
+        Lives = maxLives, maxLives
         Score = 0 },
     Cmd.ofPromise waitOneSecond () (fun _ -> TimerTick) Error
 
-  //Successful Hit
+  //Successful Hit (First)
   | model, HitPressed when model.CurrentMonster = target && not model.HasHitBefore ->
     { model with
         Score = model.Score + 5;
         HasHitBefore = true },
     Cmd.none
 
-  // Failed Hit
-  | _, HitPressed -> model, Cmd.none
+  // Hit Missed (First)
+  | { HasHitBefore = false }, HitPressed ->
+    { model with
+        Lives = removeLife model.Lives;
+        HasHitBefore = true },
+    Cmd.none
+
+  // Second Hit - Do Nothing
+  | _, HitPressed ->
+    model, Cmd.none
+
+  //Ran out of Lives
+  | { GameState = Playing; Lives = 0, _ }, TimerTick ->
+    { model with GameState = Ended Died },
+    Cmd.none
 
   //End of Game
   | { GameState = Playing; Progress = 0; }, TimerTick ->
     { model with
-        GameState = Ended
+        GameState = Ended Natural
         NewHighScore = model.Score > model.HighScore
         HighScore = System.Math.Max(model.Score, model.HighScore) },
     Cmd.none
