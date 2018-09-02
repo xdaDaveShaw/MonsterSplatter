@@ -9,6 +9,7 @@ type Msg =
   | HitPressed
   | Reset
   | HideInfo
+  | PersistState
   | Error of Exception
 
 type GameEnd =

@@ -2,11 +2,15 @@ module App.State
 
 open Elmish
 open Fable.PowerPack
+open Storage
 open Types
 
 let maxLives = 5
 
 let init () =
+
+  let pModel = defaultArg (loadFromStorage()) defaultPersistedModel
+
   { TargetMonster = "ready"
     CurrentMonster = "ready"
     Score = 0
@@ -16,7 +20,8 @@ let init () =
     NewHighScore = false
     HighScore = 0
     Lives = maxLives, maxLives
-    ShowInfo = true }, Cmd.none
+    ShowInfo = pModel.ShowInfo }
+  , Cmd.none
 
 let random = new System.Random()
 
@@ -104,7 +109,13 @@ let update msg model =
   | _, Reset -> init()
 
   //Hide the infomation notifiation.
-  | _, HideInfo -> { model with ShowInfo = false }, Cmd.none
+  | _, HideInfo ->
+    { model with ShowInfo = false },
+    Cmd.ofMsg PersistState
+
+  | _, PersistState ->
+    saveToStorage (mapToPModel model)
+    model, Cmd.none
 
   //Something broke
   | _, Error _ -> init() //TODO
