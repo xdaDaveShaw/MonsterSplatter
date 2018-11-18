@@ -149,14 +149,13 @@ let root model dispatch =
 
 open Elmish.React
 open Elmish.Debug
-open Elmish.HMR
+open Elmish.HMR //Must be last
 
 // App
 Program.mkProgram init update root
 #if DEBUG
 |> Program.withConsoleTrace
 |> Program.withDebugger
-|> Program.withHMR
 #endif
 |> Program.withReact "elmish-app"
 |> Program.run
