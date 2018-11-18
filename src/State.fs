@@ -35,11 +35,7 @@ let rec getNextMonster current =
   else
     getNextMonster current
 
-let waitOneSecondImp =
-  promise {
-    do! Promise.sleep 1000
-  }
-let waitOneSecond _ = waitOneSecondImp
+let delayTime = 1000
 
 let removeLife (remaining, total) =
     remaining - 1, total
@@ -59,7 +55,7 @@ let update msg model =
         HasHitBefore = false
         Lives = maxLives, maxLives
         Score = 0 },
-    Cmd.ofPromise waitOneSecond () (fun _ -> TimerTick) Error
+    Cmd.afterTimeout delayTime TimerTick
 
   //Successful Hit (First)
   | model, HitPressed when model.CurrentMonster = target && not model.HasHitBefore ->
@@ -106,7 +102,7 @@ let update msg model =
     { model with
         CurrentMonster = s;
         HasHitBefore = false },
-    Cmd.ofPromise waitOneSecond () (fun _ -> TimerTick) Error
+    Cmd.afterTimeout delayTime TimerTick
 
   //Reset the Game
   | _, Reset ->
