@@ -4,3 +4,4 @@ release
 src
 paket-files
 _site
+deploy/
