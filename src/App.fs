@@ -108,7 +108,7 @@ let root model dispatch =
                 Button.Props [ Title "reset EVERYTHING back to the initial state" ]
               ] [
                   span [] [ str "reset " ]
-                  FontAwesome.Icon.faIcon [] [ FontAwesome.Fa.icon FontAwesome.Fa.I.Times ]
+                  //FontAwesome.Icon.faIcon [] [ FontAwesome.Fa.icon FontAwesome.Fa.I.Times ]
               ]
             ]
           ]

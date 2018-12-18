@@ -9,5 +9,5 @@ nuget Fable.Elmish.Debugger
 nuget Fable.Elmish.HMR
 nuget Fable.Elmish.React
 nuget Fulma
-
-clitool dotnet-fable
+nuget Fable.FontAwesome
+nuget Fable.FontAwesome.Free

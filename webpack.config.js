@@ -1,44 +1,117 @@
-var path = require("path");
-var webpack = require("webpack");
-var fableUtils = require("fable-utils");
+// Template for webpack.config.js in Fable projects
+// Find latest version in https://github.com/fable-compiler/webpack-config-template
 
-function resolve(filePath) {
-    return path.join(__dirname, filePath)
-}
+// In most cases, you'll only need to edit the CONFIG object
+// See below if you need better fine-tuning of Webpack options
 
-var babelOptions = fableUtils.resolveBabelOptions({
-    presets: [["es2015", { "modules": false }]],
-    plugins: [["transform-runtime", {
-        "helpers": true,
-        // We don't need the polyfills as we're already calling
-        // cdn.polyfill.io/v2/polyfill.js in index.html
-        "polyfill": false,
-        "regenerator": false
-    }]]
-});
+var CONFIG = {
+    indexHtmlTemplate: "./public/index.html",
+    fsharpEntry: "./src/MonsterSplatter.fsproj",
+    cssEntry: "./sass/main.sass",
+    outputDir: "./deploy",
+    assetsDir: "./public",
+    devServerPort: 8080,
+    // When using webpack-dev-server, you may need to redirect some calls
+    // to a external API server. See https://webpack.js.org/configuration/dev-server/#devserver-proxy
+    devServerProxy: undefined,
+    // Use babel-preset-env to generate JS compatible with most-used browsers.
+    // More info at https://babeljs.io/docs/en/next/babel-preset-env.html
+    babel: {
+        presets: [
+            ["@babel/preset-env", {
+                "targets": {
+                    "browsers": ["last 2 versions"]
+                },
+                "modules": false,
+                "useBuiltIns": "usage",
+            }]
+        ],
+    }
+  }
 
-var isProduction = process.argv.indexOf("-p") >= 0;
-console.log("Bundling for " + (isProduction ? "production" : "development") + "...");
+  // If we're running the webpack-dev-server, assume we're in development mode
+  var isProduction = !process.argv.find(v => v.indexOf('webpack-dev-server') !== -1);
+  console.log("Bundling for " + (isProduction ? "production" : "development") + "...");
 
-module.exports = {
-    devtool: isProduction ? undefined : "source-map",
-    entry: resolve('./src/MonsterSplatter.fsproj'),
+  var path = require("path");
+  var webpack = require("webpack");
+  var HtmlWebpackPlugin = require('html-webpack-plugin');
+  var CopyWebpackPlugin = require('copy-webpack-plugin');
+  var MiniCssExtractPlugin = require("mini-css-extract-plugin");
+
+  // The HtmlWebpackPlugin allows us to use a template for the index.html page
+  // and automatically injects <script> or <link> tags for generated bundles.
+  var commonPlugins = [
+    new HtmlWebpackPlugin({
+        filename: 'index.html',
+        template: CONFIG.indexHtmlTemplate
+    })
+  ];
+
+  module.exports = {
+    // In development, bundle styles together with the code so they can also
+    // trigger hot reloads. In production, put them in a separate CSS file.
+
+    // @babel/polyfill adds code for compatibility with old browser.
+    // If you only need to support modern browsers, you can remove it.
+    entry: isProduction ? {
+        app: ["@babel/polyfill", CONFIG.fsharpEntry, CONFIG.cssEntry]
+    } : {
+            app: ["@babel/polyfill", CONFIG.fsharpEntry],
+            style: [CONFIG.cssEntry]
+        },
+    // Add a hash to the output file name in production
+    // to prevent browser caching if code changes
     output: {
-        filename: 'bundle.js',
-        path: resolve('./public'),
+        path: path.join(__dirname, CONFIG.outputDir),
+        filename: isProduction ? '[name].[hash].js' : '[name].js'
     },
+    mode: isProduction ? "production" : "development",
+    devtool: isProduction ? "source-map" : "eval-source-map",
+    optimization: {
+        // Split the code coming from npm packages into a different file.
+        // 3rd party dependencies change less often, let the browser cache them.
+        splitChunks: {
+            cacheGroups: {
+                commons: {
+                    test: /node_modules/,
+                    name: "vendors",
+                    chunks: "all"
+                }
+            }
+        },
+    },
+    // Besides the HtmlPlugin, we use the following plugins:
+    // PRODUCTION
+    //      - MiniCssExtractPlugin: Extracts CSS from bundle to a different file
+    //      - CopyWebpackPlugin: Copies static assets to output directory
+    // DEVELOPMENT
+    //      - HotModuleReplacementPlugin: Enables hot reloading when code changes without refreshing
+    plugins: isProduction ?
+        commonPlugins.concat([
+            new MiniCssExtractPlugin({ filename: 'style.css' }),
+            new CopyWebpackPlugin([{ from: CONFIG.assetsDir }]),
+        ])
+        : commonPlugins.concat([
+            new webpack.HotModuleReplacementPlugin(),
+        ]),
     resolve: {
-        modules: [
-            "node_modules", resolve("./node_modules/")
-        ]
+        // See https://github.com/fable-compiler/Fable/issues/1490
+        symlinks: false
     },
+    // Configuration for webpack-dev-server
     devServer: {
-        contentBase: resolve('./public'),
-        port: 8080,
+        publicPath: "/",
+        contentBase: CONFIG.assetsDir,
+        port: CONFIG.devServerPort,
+        proxy: CONFIG.devServerProxy,
         hot: true,
         inline: true
     },
-    mode: isProduction ? "production" : "development",
+    // - fable-loader: transforms F# into JS
+    // - babel-loader: transforms JS to old syntax (compatible with old browsers)
+    // - sass-loaders: transforms SASS/SCSS into JS
+    // - file-loader: Moves files referenced in the code (fonts, images) into output folder
     module: {
         rules: [
             {
@@ -46,8 +119,7 @@ module.exports = {
                 use: {
                     loader: "fable-loader",
                     options: {
-                        babel: babelOptions,
-                        define: isProduction ? [] : ["DEBUG"]
+                        babel: CONFIG.babel
                     }
                 }
             },
@@ -56,21 +128,23 @@ module.exports = {
                 exclude: /node_modules/,
                 use: {
                     loader: 'babel-loader',
-                    options: babelOptions
+                    options: CONFIG.babel
                 },
             },
             {
-                test: /\.sass$/,
+                test: /\.(sass|scss|css)$/,
                 use: [
-                    "style-loader",
-                    "css-loader",
-                    "sass-loader"
-                ]
+                    isProduction
+                        ? MiniCssExtractPlugin.loader
+                        : 'style-loader',
+                    'css-loader',
+                    'sass-loader',
+                ],
+            },
+            {
+                test: /\.(png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot)(\?.*)?$/,
+                use: ["file-loader"]
             }
         ]
-    },
-    plugins: isProduction ? [] : [
-        new webpack.HotModuleReplacementPlugin(),
-        new webpack.NamedModulesPlugin()
-    ]
-};
+    }
+  };
