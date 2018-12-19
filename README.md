@@ -19,10 +19,10 @@ To release a new version of the site from a branch run `.\release.ps1`.
 
 This will:
 
-- Build the site in Release mode.
-- Copy it to a folder not under version control (`release`).
+- Build the site in Release mode into `deploy`
 - Check out the `gh-pages` branch
-- Overwrite all the files in the branch with the files in the `release` folder.
+- Delete previous version of the JS files with a hash in their name.
+- Overwrite all the files in the branch with the files in the `deploy` folder.
 
 From there, you can review the pending changes and check everything works
 before committing the code and pushing it.

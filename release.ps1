@@ -9,16 +9,14 @@ yarn run build
 
 Set-Location ..
 
-# Copy the site to a folder not under source control so it won't be removed on Checkout of GH Pages.
-#Copy-Item .\public\ -Filter *.* -Destination .\release\ -Recurse
-
 git checkout gh-pages
+
+#Remove old versions
+Remove-Item app.*.js
+Remove-Item vendor.*.js
 
 # Now put the site in the root of the repo.
 Get-ChildItem .\deploy | Copy-Item -Destination . -Recurse
-
-# And sack of the copy
-#Remove-Item .\release -Recurse
 
 # Now start Bash with Jekyll to test the site on.
 bash -c "jekyll server"
