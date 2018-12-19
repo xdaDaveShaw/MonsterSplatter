@@ -13,6 +13,7 @@ let createDefaultModel (pModel : PersistedModel) =
     Score = 0
     GameState = NotStarted
     HasHitBefore = false
+    HasJustScored = false
     Progress = 100
     NewHighScore = false
     HighScore = pModel.HighScore
@@ -52,6 +53,7 @@ let update msg model =
         TargetMonster = (getNextMonster target)
         CurrentMonster = (getNextMonster target)
         NewHighScore = false
+        HasJustScored = false
         HasHitBefore = false
         Lives = maxLives, maxLives
         Score = 0 },
@@ -61,6 +63,7 @@ let update msg model =
   | model, HitPressed when model.CurrentMonster = target && not model.HasHitBefore ->
     { model with
         Score = model.Score + 5;
+        HasJustScored = true
         HasHitBefore = true },
     Cmd.none
 
@@ -101,6 +104,7 @@ let update msg model =
   | _, NewMonster s ->
     { model with
         CurrentMonster = s;
+        HasJustScored = false;
         HasHitBefore = false },
     Cmd.afterTimeout delayTime TimerTick
 

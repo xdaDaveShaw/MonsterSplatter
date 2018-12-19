@@ -71,7 +71,9 @@ let root model dispatch =
             Tag.list [ Tag.List.HasAddons; Tag.List.IsCentered; ] [
               Tag.tag [ Tag.Color Color.IsInfo; Tag.Size IsMedium; ] [
                   Level.level [] [
-                    Label.label [] [ str (sprintf "score: %d" model.Score) ]
+                    let className = if model.HasJustScored then "scored" else ""
+                    yield
+                        Label.label [ Label.CustomClass className] [ str (sprintf "score: %d" model.Score) ]
                   ]
               ]
               Tag.tag [ Tag.Color Color.IsPrimary; Tag.Size IsMedium; ] [

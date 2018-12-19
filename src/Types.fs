@@ -25,6 +25,7 @@ type Model = {
     TargetMonster: string
     CurrentMonster: string
     Score: int
+    HasJustScored: bool
     GameState: State
     HasHitBefore: bool
     Progress: int
