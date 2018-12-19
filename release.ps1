@@ -4,6 +4,8 @@ yarn install
 
 Set-Location -Path .\src
 
+Remove-Item .\deploy\ -Recurse -Force
+
 # Production build the site to the "deploy" folder.
 yarn run build
 
