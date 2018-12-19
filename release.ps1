@@ -2,18 +2,15 @@ dotnet restore
 
 yarn install
 
-Set-Location -Path .\src
-
+#Clear the last deployment
 Remove-Item .\deploy\ -Recurse -Force
 
 # Production build the site to the "deploy" folder.
 yarn run build
 
-Set-Location ..
-
 git checkout gh-pages
 
-#Remove old versions
+#Remove old versions of generated JS files
 Remove-Item app.*.js*
 Remove-Item vendors.*.js*
 
