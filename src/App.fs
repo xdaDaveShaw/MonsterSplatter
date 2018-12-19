@@ -11,6 +11,7 @@ open Fable.Helpers.React
 open Fable.Helpers.React.Props
 
 open Fulma
+open Fable.FontAwesome
 
 importAll "../sass/main.sass"
 
@@ -108,6 +109,9 @@ let root model dispatch =
                 Button.Props [ Title "reset EVERYTHING back to the initial state" ]
               ] [
                   span [] [ str "reset " ]
+                  Icon.icon [ ] [
+                      Fa.i [ Fa.Solid.Times ] [ ]
+                  ]
                   //FontAwesome.Icon.faIcon [] [ FontAwesome.Fa.icon FontAwesome.Fa.I.Times ]
               ]
             ]
