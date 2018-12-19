@@ -12,8 +12,8 @@ Set-Location ..
 git checkout gh-pages
 
 #Remove old versions
-Remove-Item app.*.js
-Remove-Item vendor.*.js
+Remove-Item app.*.js*
+Remove-Item vendors.*.js*
 
 # Now put the site in the root of the repo.
 Get-ChildItem .\deploy | Copy-Item -Destination . -Recurse
