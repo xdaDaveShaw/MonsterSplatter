@@ -46,9 +46,22 @@ let createMainButton dispatch gameState =
 
 
 let createsLivesLabel (remaining, total) =
-    let dead = String.replicate (total - remaining) "🖤"
-    let remain = String.replicate remaining "💗"
-    str (dead + remain)
+
+    let createIcon className =
+        Icon.icon [ ] [
+            Fa.i [
+                Fa.CustomClass className
+                Fa.Solid.Heart
+            ] [ ] ]
+
+    let getIconClass position =
+        if position <= (total - remaining) then
+            "dead"
+        else
+            "alive"
+
+    [1..total]
+    |> List.map (getIconClass >> createIcon)
 
 let root model dispatch =
   div
@@ -69,7 +82,7 @@ let root model dispatch =
 
               Tag.tag [ Tag.Color Color.IsWarning; Tag.Size IsMedium; ] [
                   Level.level [] [
-                      Label.label [] [ createsLivesLabel model.Lives ]
+                      Label.label [] (createsLivesLabel model.Lives)
                   ]
               ]
             ]
@@ -109,10 +122,7 @@ let root model dispatch =
                 Button.Props [ Title "reset EVERYTHING back to the initial state" ]
               ] [
                   span [] [ str "reset " ]
-                  Icon.icon [ ] [
-                      Fa.i [ Fa.Solid.Times ] [ ]
-                  ]
-                  //FontAwesome.Icon.faIcon [] [ FontAwesome.Fa.icon FontAwesome.Fa.I.Times ]
+                  Icon.icon [ ] [ Fa.i [ Fa.Solid.Times ] [ ] ]
               ]
             ]
           ]
