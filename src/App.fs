@@ -168,7 +168,7 @@ let root model dispatch =
 
 open Elmish.React
 open Elmish.Debug
-//open Elmish.HMR //Must be last
+open Elmish.HMR //Must be last
 
 // App
 Program.mkProgram init update root
