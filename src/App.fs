@@ -4,11 +4,11 @@ open App.State
 open App.Types
 
 open Elmish
-open Elmish.Browser.Navigation
+open Elmish.Navigation
 
 open Fable.Core.JsInterop
-open Fable.Helpers.React
-open Fable.Helpers.React.Props
+open Fable.React
+open Fable.React.Props
 
 open Fulma
 open Fable.FontAwesome
@@ -16,7 +16,7 @@ open Fable.FontAwesome
 importAll "../sass/main.sass"
 
 [<Literal>]
-let instructions = @"Press 'start' to begin a game.
+let Instructions = @"Press 'start' to begin a game.
 Press 'hit' (or use Space Bar) when the two mosters match to gain 5 points.
 Match as many as you can in the time to earn a high score."
 
@@ -97,7 +97,7 @@ let root model dispatch =
               ] []
               strong [] [str "Monster Splatter" ]
               p [] [ str "Monster Splatter is a simple picture matching game." ]
-              p [] [ str instructions ]
+              p [] [ str Instructions ]
             ]
 
           yield Level.level [] [
@@ -152,7 +152,10 @@ let root model dispatch =
         ]
 
       yield Footer.footer [ ] [
-        Content.content [ Content.CustomClass Fulma.TextAlignment.Classes.HasTextCentered ] [
+        Content.content [
+            Content.Option.Modifiers [
+                Modifier.TextAlignment (Screen.All, TextAlignment.Centered) ]
+         ] [
             str "Monster Splatter - Developed by "
             a [ Href "https://taeguk.co.uk/about" ] [ str "Dave Shaw" ]
             p [] [
@@ -165,7 +168,7 @@ let root model dispatch =
 
 open Elmish.React
 open Elmish.Debug
-open Elmish.HMR //Must be last
+//open Elmish.HMR //Must be last
 
 // App
 Program.mkProgram init update root
@@ -173,5 +176,5 @@ Program.mkProgram init update root
 |> Program.withConsoleTrace
 |> Program.withDebugger
 #endif
-|> Program.withReact "elmish-app"
+|> Program.withReactBatched "elmish-app"
 |> Program.run

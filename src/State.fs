@@ -1,7 +1,6 @@
 module App.State
 
 open Elmish
-open Fable.PowerPack
 open Storage
 open Types
 
@@ -27,7 +26,7 @@ let init () =
 
   model, Cmd.none
 
-let random = new System.Random()
+let random = System.Random()
 
 let rec getNextMonster current =
   let rand = string (random.Next(4) + 1)

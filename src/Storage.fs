@@ -1,7 +1,7 @@
 module App.Storage
 
+open Fable.Core
 open Fable.Core.JsInterop
-open Fable.Import
 open Types
 
 type PersistedModel = {
@@ -15,15 +15,16 @@ let defaultPersistedModel =
 
 let key = "monsterSplatter"
 
+
 let loadFromStorage () : PersistedModel option =
-    !!Browser.localStorage.getItem(key)
+    !!Browser.WebStorage.localStorage.getItem(key)
     |> Option.map (fun json -> !!JS.JSON.parse(json))
 
 let saveToStorage pModel =
-    Browser.localStorage.setItem(key, JS.JSON.stringify pModel)
+    Browser.WebStorage.localStorage.setItem(key, JS.JSON.stringify pModel)
 
 let clearStorage () =
-    Browser.localStorage.removeItem key
+    Browser.WebStorage.localStorage.removeItem key
 
 let mapToPModel (model: Model) =
     { ShowInfo = model.ShowInfo
